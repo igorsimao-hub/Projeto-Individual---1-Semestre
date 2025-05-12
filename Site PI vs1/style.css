@@ -112,6 +112,10 @@ body {
   margin-bottom: 1rem;
 }
 
+.box-filmografia >ul { /*isso aqui foi pra tirar as bolinhas da lista do html*/
+list-style: none;
+}
+
 .box-filmografia{
   background-color: var(--box-bg);
   padding: 1.5rem;
@@ -146,6 +150,7 @@ section {
 
 section.objetivo{
   padding-left: 20px;
+  padding-right: 20px;
 }
 
 section.galeria-filmes{
@@ -155,6 +160,10 @@ section.galeria-filmes{
   margin-right: 200px;
 }
 
+section.sobre-diretor {
+  padding-left: 20px;
+  padding-right: 20px;
+}
 
 
 section h2 {
