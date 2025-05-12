@@ -60,8 +60,8 @@ body {
 
 /* Banner */
 .banner {
-  background: url('assets/imgs/banner.jpg') no-repeat center/cover;
-  height: 300px;
+  background: url(assets/imgs/background\ tarantino.jpg) no-repeat center/cover;
+  height: 600px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -96,6 +96,10 @@ body {
   flex: 1 1 300px;
   text-align: center;
   box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+.box .img {
+  height: 200px;
 }
 
 .box h4 {
