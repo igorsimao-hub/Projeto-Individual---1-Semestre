@@ -29,6 +29,13 @@ body {
   padding: 1rem 0;
 }
 
+.container h2 {
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  padding: 20px;
+}
+
 /* Header */
 .header {
   background-color: var(--box-bg);
@@ -94,12 +101,15 @@ body {
   border-radius: 10px;
   flex: 1 1 300px;
   text-align: center;
-  height: 550px;
+  height: 600px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+  width: 480px;
 }
 
 .box .img {
-  height: 200px;
+  width: 370px;
+  height: 330px;
+  border-radius: 1rem;
 }
 
 .box h4 {
@@ -110,35 +120,13 @@ body {
 
 .box p, .box ul {
   margin-bottom: 1rem;
+
 }
 
-.box-filmografia >ul { /*isso aqui foi pra tirar as bolinhas da lista do html*/
+.box >ul { /*isso aqui foi pra tirar as bolinhas da lista do html*/
 list-style: none;
 }
 
-.box-filmografia{
-  background-color: var(--box-bg);
-  padding: 1.5rem;
-  border-radius: 10px;
-  flex: 1 1 300px;
-  text-align: center;
-  height: 580px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-}
-
-.box-filmografia .img {
-  height: 200px;
-}
-
-.box-filmografia h4 {
-  color: var(--amarelo-suave);
-  margin-bottom: 1rem;
-}
-
-.box-filmografia p, .box-filmografia ul {
-  margin-bottom: 1rem;
-  text-decoration: none;
-}
 
 /* Seções */
 section {
