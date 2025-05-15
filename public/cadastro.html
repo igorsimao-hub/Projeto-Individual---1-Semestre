@@ -6,7 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+<<<<<<< HEAD
   <title>PulpCine | Cadastro</title>
+=======
+  <title>AquaTech | Cadastro</title>
+>>>>>>> 4bf4c4122617eb72c7339769d66de070f40bebb8
 
   <script src="./js/sessao.js"></script>
 
@@ -26,14 +30,25 @@
     </div>
     <div class="container">
       <div class="card card-login">
+<<<<<<< HEAD
         <h1>PulpCine</h1>
         <p><strong>Cadastre-se</strong> para explorar o universo Tarantino </p>
+=======
+        <h2>Bem-vindo!</h2>
+>>>>>>> 4bf4c4122617eb72c7339769d66de070f40bebb8
         <div class="formulario">
           <!--
                          Para inserir mais um campo, copie uma das inputs abaixo.
                          Assim que inserir vá para o script abaixo.
                      -->
           <div class="campo">
+<<<<<<< HEAD
+=======
+            <span>Código de ativação:</span>
+            <input id="codigo_input" type="text" placeholder="Insira aqui seu código" />
+          </div>
+          <div class="campo">
+>>>>>>> 4bf4c4122617eb72c7339769d66de070f40bebb8
             <span>Nome:</span>
             <input id="nome_input" type="text" placeholder="Seu nome" />
           </div>
@@ -67,8 +82,12 @@
 <script>
 
   // Array para armazenar empresas cadastradas para validação de código de ativação 
+<<<<<<< HEAD
   /*let listaEmpresasCadastradas = []; MODIFICADO
   */
+=======
+  let listaEmpresasCadastradas = [];
+>>>>>>> 4bf4c4122617eb72c7339769d66de070f40bebb8
 
   function cadastrar() {
     // aguardar();
@@ -79,12 +98,23 @@
     var emailVar = email_input.value;
     var senhaVar = senha_input.value;
     var confirmacaoSenhaVar = confirmacao_senha_input.value;
+<<<<<<< HEAD
+=======
+    var codigoVar = codigo_input.value;
+    var idEmpresaVincular
+>>>>>>> 4bf4c4122617eb72c7339769d66de070f40bebb8
 
     // Verificando se há algum campo em branco
     if (
       nomeVar == "" ||
       emailVar == "" ||
+<<<<<<< HEAD
       senhaVar == ""
+=======
+      senhaVar == "" ||
+      confirmacaoSenhaVar == "" ||
+      codigoVar == ""
+>>>>>>> 4bf4c4122617eb72c7339769d66de070f40bebb8
     ) {
       cardErro.style.display = "block";
       mensagem_erro.innerHTML =
@@ -97,7 +127,11 @@
     }
 
     // Verificando se o código de ativação é de alguma empresa cadastrada
+<<<<<<< HEAD
     /*for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
+=======
+    for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
+>>>>>>> 4bf4c4122617eb72c7339769d66de070f40bebb8
       if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
         idEmpresaVincular = listaEmpresasCadastradas[i].id
         console.log("Código de ativação válido.");
@@ -108,7 +142,10 @@
         finalizarAguardar();
       }
     }
+<<<<<<< HEAD
       */
+=======
+>>>>>>> 4bf4c4122617eb72c7339769d66de070f40bebb8
 
     // Enviando o valor da nova input
     fetch("/usuarios/cadastrar", {
@@ -121,7 +158,12 @@
         // Agora vá para o arquivo routes/usuario.js
         nomeServer: nomeVar,
         emailServer: emailVar,
+<<<<<<< HEAD
         senhaServer: senhaVar
+=======
+        senhaServer: senhaVar,
+        idEmpresaVincularServer: idEmpresaVincular
+>>>>>>> 4bf4c4122617eb72c7339769d66de070f40bebb8
       }),
     })
       .then(function (resposta) {
@@ -152,7 +194,11 @@
   }
 
   // Listando empresas cadastradas 
+<<<<<<< HEAD
   /*function listar() {
+=======
+  function listar() {
+>>>>>>> 4bf4c4122617eb72c7339769d66de070f40bebb8
     fetch("/empresas/listar", {
       method: "GET",
     })
@@ -169,7 +215,11 @@
       .catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
       });
+<<<<<<< HEAD
   }*/
+=======
+  }
+>>>>>>> 4bf4c4122617eb72c7339769d66de070f40bebb8
 
   function sumirMensagem() {
     cardErro.style.display = "none";
