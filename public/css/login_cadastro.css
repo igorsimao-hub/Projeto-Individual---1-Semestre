@@ -33,11 +33,7 @@ body {
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
 }
 
-<<<<<<< HEAD
 .card-login h1 {
-=======
-.card-login h2 {
->>>>>>> 4bf4c4122617eb72c7339769d66de070f40bebb8
   font-size: 32px;
   margin-bottom: 10px;
   color: #e50914;
@@ -102,7 +98,6 @@ body {
 .loading-div {
   margin-top: 15px;
   display: none;
-<<<<<<< HEAD
   justify-content: center; 
   align-items: center;
 }
@@ -111,12 +106,6 @@ body {
   width: 70px;
   height: 70px;
   border-radius: 2rem;
-=======
-}
-
-.loading-div img {
-  width: 30px;
->>>>>>> 4bf4c4122617eb72c7339769d66de070f40bebb8
 }
 
 .link-cadastro {
