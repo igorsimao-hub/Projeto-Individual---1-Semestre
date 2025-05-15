@@ -1,0 +1,118 @@
+/* login_cadastro.css */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background: #1e1e1e url(../assets/imgs/login.avif) no-repeat center center fixed;
+  background-size: cover;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 450px;
+}
+
+.card-login {
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 40px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.card-login h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+  color: #e50914;
+}
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.campo span {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.campo input {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+.botao {
+  margin-top: 20px;
+  padding: 12px;
+  background-color: #e50914;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.botao:hover {
+  background-color: #b00610;
+}
+
+.alerta_erro {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.card_erro {
+  background-color: rgba(255, 0, 0, 0.85);
+  padding: 10px 20px;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: bold;
+  display: none;
+}
+
+.loading-div {
+  margin-top: 15px;
+  display: none;
+  justify-content: center; 
+  align-items: center;
+}
+
+.loading-div img {
+  width: 70px;
+  height: 70px;
+  border-radius: 2rem;
+}
+
+.link-cadastro {
+  margin-top: 15px;
+}
+
+.link-cadastro a {
+  color: #e50914;
+  text-decoration: none;
+}
