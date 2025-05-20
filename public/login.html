@@ -19,7 +19,7 @@
 
     <!--Header-->
 
-
+<div></div>
     <div class="login">
         <div class="alerta_erro">
             <div class="card_erro" id="cardErro">
@@ -94,6 +94,7 @@
             if (resposta.ok) {
                 console.log(resposta);
 
+
                 resposta.json().then(json => {
                     console.log(json);
                     console.log(JSON.stringify(json));
@@ -102,9 +103,10 @@
                     sessionStorage.ID_USUARIO = json.id;
                     sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
 
-                    setTimeout(function () {
-                        window.location = "./pagina_caes.html";
-                    }, 1000); // apenas para exibir o loading
+
+                        setTimeout(() => {
+                            window.location = "./catalogo.html";
+                        }, 1000);
 
                 });
 

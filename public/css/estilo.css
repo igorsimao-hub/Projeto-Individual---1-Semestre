@@ -192,6 +192,7 @@ section ul {
   transition: transform 0.3s, box-shadow 0.3s;
   display: flex;
   flex-direction: column;
+  cursor: pointer;
 }
 
 .card-filme img {
@@ -213,7 +214,21 @@ section ul {
 
 .card-filme:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 16px rgba(255,215,0,0.6);
+  box-shadow: 0 6px 16px rgb(103, 31, 31);
+}
+
+.botaoConhecerFilmes{
+  padding: 12px 25px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--amarelo-suave);
+  color: var(--fundo-principal);
+  transition: background-color 0.3s;
+  margin: 20px auto;
+  display: flex;
+  align-self: center;
 }
 
 /* Footer */
@@ -244,6 +259,7 @@ section ul {
   justify-content: center;
   text-align: center;
   padding: 2rem 0;
+  cursor: pointer;
 }
 
 /* ALERTA */

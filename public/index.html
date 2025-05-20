@@ -8,11 +8,7 @@
 
   <title>PulpCine | Quentin Tarantino</title>
 
-<<<<<<< HEAD
   <link rel="stylesheet" href="./css/estilo.css" />
-=======
-  <link rel="stylesheet" href="../public/css/estilo.css" />
->>>>>>> 4bf4c4122617eb72c7339769d66de070f40bebb8
   <link rel="icon" href="assets/icon/favicon.ico" />
   <link rel="preconnect" href="https://fonts.gstatic.com" />
 </head>
@@ -27,6 +23,7 @@
           <li>|</li>
           <li><a href="./login.html">Login</a></li>
           <li><a href="./cadastro.html">Cadastro</a></li>
+          <li><a href="./filme.html">Filmes</a></li>
         </ul>
       </nav>
     </div>
@@ -84,36 +81,10 @@
         <p>Quentin Tarantino nasceu em 1963, em Knoxville, Tennessee. Começou sua carreira trabalhando em uma locadora de filmes, onde desenvolveu seu conhecimento enciclopédico sobre o cinema. Seu primeiro grande sucesso, <strong>Cães de Aluguel</strong> (1992), o colocou no mapa do cinema independente.</p>
         <p>Com <strong>Pulp Fiction</strong> (1994), ele revolucionou a narrativa não linear e ganhou a Palma de Ouro em Cannes. Conhecido por seus roteiros afiados, violência estilizada e inúmeras referências culturais, Tarantino se tornou um dos diretores mais influentes do século XXI.</p>
       </section>
+      
+      <button class="botaoConhecerFilmes" onclick="ConhecerFilmes()">Conheça Melhor os filmes do diretor!</button>
 
-      <section class="galeria-filmes">
-        <h2>Conheça melhor os filmes do diretor!</h2>
-        <div class="cards">
-          <a href="dogs.html" class="card-filme">
-            <img src="assets/imgs/card caesDeAluguel.jpg" alt="Cães de Aluguel" />
-            <span>Cães de Aluguel (1992)</span>
-          </a>
-          <a href="login.html" class="card-filme">
-            <img src="assets/imgs/card PulpFiction.jpg" alt="Pulp Fiction" />
-            <span>Pulp Fiction (1994)</span>
-          </a>
-          <a href="kill-bill.html" class="card-filme">
-            <img src="assets/imgs/card killbill.jpg" alt="Kill Bill" />
-            <span>Kill Bill Vol. 1 & 2 (2003-2004)</span>
-          </a>
-          <a href="bastardos.html" class="card-filme">
-            <img src="assets/imgs/card bastardos.jpg" alt="Bastardos Inglórios" />
-            <span>Bastardos Inglórios (2009)</span>
-          </a>
-          <a href="django.html" class="card-filme">
-            <img src="assets/imgs/card django.jpg" alt="Django Livre" />
-            <span>Django Livre (2012)</span>
-          </a>
-          <a href="hollywood.html" class="card-filme">
-            <img src="assets/imgs/card eraUmaVezHollywood.png" alt="Era Uma Vez em... Hollywood" />
-            <span>Era Uma Vez em... Hollywood (2019)</span>
-          </a>
-        </div>
-      </section>
+      
 
     </div>
   </main>
@@ -125,5 +96,11 @@
     </div>
   </footer>
 </body>
-
+<script>
+  
+  function ConhecerFilmes() {
+    window.location.href = "login.html";
+  }
+  
+</script>
 </html>
