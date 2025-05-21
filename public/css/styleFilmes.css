@@ -96,11 +96,18 @@ body {
   padding-left: 20px;
 }
 
+.container h2 {
+  font-size: 32px;
+  margin-bottom: 50px;
+  text-align: center;
+  padding: 20px;;
+}
+
 /* Galeria de Filmes */
 .cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 1.5rem;
+  gap: 0.5rem; /* Menor espaço entre os cards */
   margin-top: 1rem;
 
 }
@@ -115,9 +122,9 @@ body {
   display: flex;
   flex-direction: column;
   cursor: pointer;
-  max-width: 200px;      /* Limita a largura máxima */
+  max-width: 170px;      /* Limita a largura máxima */
   min-width: 160px;      /* Largura mínima opcional */
-  margin: 0 auto;        /* Centraliza na coluna */
+  margin: auto  ;        /* Centraliza na coluna */
   height: 320px;         /* Altura fixa opcional */
 }
 

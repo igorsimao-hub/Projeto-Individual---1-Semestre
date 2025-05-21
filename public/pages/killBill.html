@@ -1,11 +1,108 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kill Bill | PulpCine</title>
+  <link rel="stylesheet" href="../css/styleFilmes.css" />
+  <link rel="icon" href="assets/icon/favicon.ico" />
 </head>
+
 <body>
-    <h1>kill bill</h1>
+  <header class="header">
+    <div class="container">
+      <h1 class="titulo">PulpCine | Quentin Tarantino</h1>
+      <nav>
+        <ul class="navbar">
+          <li class="agora"><a href="../index.html">Início</a></li>
+          <li>|</li>
+          <li><a href="./login.html">Login</a></li>
+          <li><a href="./cadastro.html">Cadastro</a></li>
+          <li><a href="./filme.html">Filmes</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+<br><br><br><br><br>
+  <div class="banner">
+    <img src="../assets/imgs/bannerKillBill.jpg" alt="Banner de Kill Bill" />
+  </div>
+
+  <main class="conteudo">
+    <div class="container">
+      <h2>Kill Bill Vol. 1 & 2 (2003-2004)</h2>
+
+      <section class="sinopse">
+        <h3>Sinopse</h3>
+        <p>
+          Após ser traída por seu antigo grupo de assassinos e deixada à beira da morte no dia de seu casamento, Beatrix Kiddo, conhecida como A Noiva, desperta de um coma e parte em uma jornada implacável de vingança contra seus ex-companheiros e seu líder, Bill. A saga se desenrola em dois volumes, mesclando artes marciais, faroeste e drama em uma obra estilizada e marcante.
+        </p>
+      </section>
+
+      <section class="curiosidades">
+        <h3>Curiosidades</h3>
+        <ul>
+          <li>O filme foi originalmente concebido como uma obra única, mas acabou sendo dividido em dois volumes devido à sua longa duração.</li>
+          <li>Quentin Tarantino homenageia diversos gêneros, como o cinema de samurai, spaghetti western e filmes de artes marciais dos anos 70.</li>
+          <li>Uma das cenas mais icônicas, a luta contra os "88 Maníacos", levou semanas para ser filmada e é considerada um marco no cinema de ação.</li>
+          <li>Uma trilha sonora cuidadosamente escolhida complementa a estética visual única da obra.</li>
+        </ul>
+      </section>
+
+      <section class="elenco">
+        <h3>Elenco Principal</h3>
+        <ul>
+          <li>Uma Thurman como Beatrix Kiddo / A Noiva</li>
+          <li>David Carradine como Bill</li>
+          <li>Lucy Liu como O-Ren Ishii</li>
+          <li>Michael Madsen como Budd</li>
+          <li>Daryl Hannah como Elle Driver</li>
+        </ul>
+        <button class="botaoQuiz" onclick="funcaoQuiz()">Teste seus conhecimentos</button>
+      </section>
+    </div>
+  </main>
+
+  <section class="galeria-filmes">
+    <div class="container">
+      <h2>Fique por dentro dos outros filmes!</h2>
+      <div class="cards">
+        <a href="./caesDeAluguel.html" class="card-filme">
+          <img src="../assets/imgs/card caesDeAluguel.jpg" alt="Cães de Aluguel" />
+          <span>Cães de Aluguel (1992)</span>
+        </a>
+        <a href="./pulpFiction.html" class="card-filme">
+          <img src="../assets/imgs/card PulpFiction.jpg" alt="Pulp Fiction" />
+          <span>Pulp Fiction (1994)</span>  
+        </a>
+        <a href="./bastardosInglorios.html" class="card-filme">
+          <img src="../assets/imgs/card bastardos.jpg" alt="Bastardos Inglórios" />
+          <span>Bastardos Inglórios (2009)</span>
+        </a>
+        <a href="./django.html" class="card-filme">
+          <img src="../assets/imgs/card django.jpg" alt="Django Livre" />
+          <span>Django Livre (2012)</span>
+        </a>
+        <a href="./hollywood.html" class="card-filme">
+          <img src="../assets/imgs/card eraUmaVezHollywood.png" alt="Era Uma Vez em... Hollywood" />
+          <span>Era Uma Vez em... Hollywood (2019)</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <h4>&copy; 2025 PulpCine - Todos os Direitos Reservados</h4>
+      <span class="version">v1.0.0</span>
+    </div>
+  </footer>
 </body>
+
+<script>
+  function funcaoQuiz() {
+    window.location.href = "../quiz.html";
+  }
+</script>
 </html>

@@ -46,6 +46,18 @@
     <h2>Avaliação do Filme</h2>
 
     <div class="criterio">
+      <label for="filme">Escolha o filme:</label>
+      <select id="filme">
+        <option value="1">Cães de Aluguel</option>
+        <option value="2">Pulp Fiction</option>
+        <option value="3">Kill Bill Vol 1 & 2</option>
+        <option value="4">Bastardos Inglórios</option>
+        <option value="5">Django Livre</option>
+        <option value="6">Era Uma Vez em...Hollywood</option>
+      </select>
+    </div>
+
+    <div class="criterio">
       <label for="enredo">Enredo:</label>
       <input type="number" id="enredo" min="1" max="10" value="5"/>
     </div>
@@ -86,7 +98,8 @@
     }
 
     function enviarAvaliacao() {
-      const fk_usuario = sessionStorage.getItem("ID_USUARIO"); // essa variavel guarda o id do usuario logado
+      const fk_filme = document.getElementById("filme").value // essa variavel guarda o id do filme
+      const fk_usuario = sessionStorage.getItem("ID_USUARIO") // essa variavel guarda o id do usuario logado
       const avaliacao = {
         enredo: Number(document.getElementById("enredo").value),
         trilha: Number(document.getElementById("trilha").value),
@@ -115,7 +128,7 @@
         nota_fotografia: avaliacao.fotografia,
         momento: avaliacao.momento,
         fk_usuario: fk_usuario,
-        fk_filme: 3     // trocar pelo id do filme atual
+        fk_filme: fk_filme     // trocar pelo id do filme atual
        })
       })
       .then(res => res.json())

@@ -1,11 +1,108 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Era Uma Vez em... Hollywood | PulpCine</title>
+  <link rel="stylesheet" href="../css/styleFilmes.css" />
+  <link rel="icon" href="assets/icon/favicon.ico" />
 </head>
+
 <body>
-    <h1>hollywood</h1>
+  <header class="header">
+    <div class="container">
+      <h1 class="titulo">PulpCine | Quentin Tarantino</h1>
+      <nav>
+        <ul class="navbar">
+          <li class="agora"><a href="../index.html">Início</a></li>
+          <li>|</li>
+          <li><a href="./login.html">Login</a></li>
+          <li><a href="./cadastro.html">Cadastro</a></li>
+          <li><a href="./filme.html">Filmes</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+<br><br><br><br><br>
+  <div class="banner">
+    <img src="../assets/imgs/bannerEraUmaVezEmHollywood.jpg" alt="Banner de Era Uma Vez em... Hollywood" />
+  </div>
+
+  <main class="conteudo">
+    <div class="container">
+      <h2>Era Uma Vez em... Hollywood (2019)</h2>
+
+      <section class="sinopse">
+        <h3>Sinopse</h3>
+        <p>
+          Em 1969, Los Angeles passa por transformações enquanto a era de ouro de Hollywood chega ao fim. Rick Dalton, um ator de televisão em decadência, e seu dublê e amigo de longa data, Cliff Booth, tentam se manter relevantes na indústria cinematográfica. Paralelamente, a atriz Sharon Tate vive momentos felizes, até que seus destinos se cruzam com membros da infame seita de Charles Manson.
+        </p>
+      </section>
+
+      <section class="curiosidades">
+        <h3>Curiosidades</h3>
+        <ul>
+          <li>O filme recebeu 10 indicações ao Oscar, vencendo 2: Melhor Ator Coadjuvante (Brad Pitt) e Melhor Design de Produção.</li>
+          <li>Quentin Tarantino considera este seu "filme mais pessoal", uma carta de amor ao cinema clássico de Hollywood.</li>
+          <li>Margot Robbie interpreta Sharon Tate, homenageando a atriz assassinada em 1969.</li>
+          <li>A produção recriou com fidelidade ruas de Los Angeles dos anos 60, incluindo cinemas e lojas icônicas.</li>
+        </ul>
+      </section>
+
+      <section class="elenco">
+        <h3>Elenco Principal</h3>
+        <ul>
+          <li>Leonardo DiCaprio como Rick Dalton</li>
+          <li>Brad Pitt como Cliff Booth</li>
+          <li>Margot Robbie como Sharon Tate</li>
+          <li>Emile Hirsch como Jay Sebring</li>
+          <li>Margaret Qualley como Pussycat</li>
+        </ul>
+        <button class="botaoQuiz" onclick="funcaoQuiz()">Teste seus conhecimentos</button>
+      </section>
+    </div>
+  </main>
+
+  <section class="galeria-filmes">
+    <div class="container">
+      <h2>Fique por dentro dos outros filmes!</h2>
+      <div class="cards">
+        <a href="./caesDeAluguel.html" class="card-filme">
+          <img src="../assets/imgs/card caesDeAluguel.jpg" alt="Cães de Aluguel" />
+          <span>Cães de Aluguel (1992)</span>
+        </a>
+        <a href="./pulpFiction.html" class="card-filme">
+          <img src="../assets/imgs/card PulpFiction.jpg" alt="Pulp Fiction" />
+          <span>Pulp Fiction (1994)</span>
+        </a>
+        <a href="./killBill.html" class="card-filme">
+          <img src="../assets/imgs/card killbill.jpg" alt="Kill Bill" />
+          <span>Kill Bill Vol. 1 & 2 (2003-2004)</span>
+        </a>
+        <a href="./bastardos.html" class="card-filme">
+          <img src="../assets/imgs/card bastardos.jpg" alt="Bastardos Inglórios" />
+          <span>Bastardos Inglórios (2009)</span>
+        </a>
+        <a href="./django.html" class="card-filme">
+          <img src="../assets/imgs/card django.jpg" alt="Django Livre" />
+          <span>Django Livre (2012)</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <h4>&copy; 2025 PulpCine - Todos os Direitos Reservados</h4>
+      <span class="version">v1.0.0</span>
+    </div>
+  </footer>
 </body>
+
+<script>
+  function funcaoQuiz() {
+    window.location.href = "../quiz.html";
+  }
+</script>
 </html>

@@ -1,11 +1,108 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cães de Aluguel | PulpCine</title>
+  <link rel="stylesheet" href="../css/styleFilmes.css" />
+  <link rel="icon" href="assets/icon/favicon.ico" />
 </head>
+
 <body>
-    <h1>cu</h1>
+  <header class="header">
+    <div class="container">
+      <h1 class="titulo">PulpCine | Quentin Tarantino</h1>
+      <nav>
+        <ul class="navbar">
+          <li class="agora"><a href="../index.html">Início</a></li>
+          <li>|</li>
+          <li><a href="./login.html">Login</a></li>
+          <li><a href="./cadastro.html">Cadastro</a></li>
+          <li><a href="./filme.html">Filmes</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+<br><br><br><br><br>
+  <div class="banner">
+    <img src="../assets/imgs/bannerCaesDeAluguel.jpg" alt="Banner de Cães de Aluguel" />
+  </div>
+
+  <main class="conteudo">
+    <div class="container">
+      <h2>Cães de Aluguel (1992)</h2>
+
+      <section class="sinopse">
+        <h3>Sinopse</h3>
+        <p>
+          Após um assalto a uma joalheria dar errado, os criminosos sobreviventes suspeitam que há um traidor entre eles. Sem saber a identidade uns dos outros, os membros da gangue precisam lidar com a tensão crescente, desconfiança e revelações que colocam tudo em risco.
+        </p>
+      </section>
+
+      <section class="curiosidades">
+        <h3>Curiosidades</h3>
+        <ul>
+          <li>Foi o filme de estreia de Quentin Tarantino como diretor.</li>
+          <li>O orçamento do filme foi de apenas 1,2 milhão de dólares.</li>
+          <li>A famosa cena da tortura ao som de "Stuck in the Middle with You" tornou-se icônica.</li>
+          <li>Harvey Keitel foi essencial para que o filme saísse do papel, ajudando no financiamento e produção.</li>
+        </ul>
+      </section>
+
+      <section class="elenco">
+        <h3>Elenco Principal</h3>
+        <ul>
+          <li>Harvey Keitel como Sr. White</li>
+          <li>Tim Roth como Sr. Orange</li>
+          <li>Michael Madsen como Sr. Blonde</li>
+          <li>Steve Buscemi como Sr. Pink</li>
+          <li>Quentin Tarantino como Sr. Brown</li>
+        </ul>
+        <button class="botaoQuiz" onclick="funcaoQuiz()">Teste seus conhecimentos</button>
+      </section>
+    </div>
+  </main>
+  
+  <section class="galeria-filmes">
+    <div class="container">
+      <h2>Fique por dentro dos outros filmes!</h2>
+      <div class="cards">
+        <a href="./pulpFiction.html" class="card-filme">
+          <img src="../assets/imgs/card PulpFiction.jpg" alt="Pulp Fiction" />
+          <span>Pulp Fiction (1994)</span>
+        </a>
+        <a href="./killBill.html" class="card-filme">
+          <img src="../assets/imgs/card killbill.jpg" alt="Kill Bill" />
+          <span>Kill Bill Vol. 1 & 2 (2003-2004)</span>
+        </a>
+        <a href="./bastardosInglorios.html" class="card-filme">
+            <img src="../assets/imgs/card bastardos.jpg" alt="Bastardos Inglórios" />
+            <span>Bastardos Inglórios (2009)</span>
+          </a>
+        <a href="./django.html" class="card-filme">
+          <img src="../assets/imgs/card django.jpg" alt="Django Livre" />
+          <span>Django Livre (2012)</span>
+        </a>
+        <a href="./hollywood.html" class="card-filme">
+          <img src="../assets/imgs/card eraUmaVezHollywood.png" alt="Era Uma Vez em... Hollywood" />
+          <span>Era Uma Vez em... Hollywood (2019)</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <h4>&copy; 2025 PulpCine - Todos os Direitos Reservados</h4>
+      <span class="version">v1.0.0</span>
+    </div>
+  </footer>
 </body>
+
+<script>
+  function funcaoQuiz() {
+    window.location.href = "../quiz.html";
+  }
+</script>
 </html>
