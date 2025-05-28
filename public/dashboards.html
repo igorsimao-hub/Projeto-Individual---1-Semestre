@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard | PulpCine</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="./css/dashboardsIgor.css">
+</head>
+<body>
+    <h2>Média geral dos filmes</h2>
+    <canvas id="graficoMedia" width="600" height="400"></canvas>
+
+    <div id="radarCharts"></div>
+
+    <script>
+        
+        fetch('/avaliacao/mediaPorFilme')
+            .then(res => res.json())
+            .then(dados => {
+                console.log(dados); // adicionei o console.log pq esatava dando erro e não sabia do que se tratava
+                const filmes = dados.map(item => `Filme ${item.nome_filme}`);
+                const medias = dados.map(item => Number(item.media_geral));
+
+                const ctx = document.getElementById('graficoMedia').getContext('2d');
+                const grafico = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: filmes,
+                        datasets: [{
+                            label: 'Média Geral',
+                            data: medias,
+                            backgroundColor: 'rgba(255, 99, 132, 0.6)',
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: 10
+                            }
+                        }
+                    }
+                });
+            });
+
+        
+        // Gráficos radar para cada filme
+       fetch('/avaliacao/mediasCriterioPorFilme')
+    .then(res => res.json())
+    .then(data => {
+        const labels = ["Enredo", "Trilha Sonora", "Atuação", "Direção", "Fotografia"];
+        const radarContainer = document.getElementById('radarCharts');
+
+        data.forEach(filme => {
+            const canvas = document.createElement('canvas');
+            canvas.id = `radar-${filme.nome_filme}`;
+            canvas.width = 400;
+            canvas.height = 400;
+            radarContainer.appendChild(canvas);
+
+            const ctx = canvas.getContext('2d');
+            new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: filme.nome_filme,
+                        data: [
+                            filme.media_enredo,
+                            filme.media_trilha,
+                            filme.media_atuacao,
+                            filme.media_direcao,
+                            filme.media_foto
+                        ],
+                        fill: true,
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderColor: 'rgb(54, 162, 235)',
+                        pointBackgroundColor: 'rgb(54, 162, 235)'
+                    }]
+                }
+            });
+        });
+    });
+    </script>
+</body>
+</html>
