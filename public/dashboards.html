@@ -18,7 +18,7 @@
             .then(res => res.json())
             .then(dados => {
                 console.log(dados); // adicionei o console.log pq esatava dando erro e não sabia do que se tratava
-                const filmes = dados.map(item => `Filme ${item.nome_filme}`);
+                const filmes = dados.map(item => `${item.nome_filme}`);
                 const medias = dados.map(item => Number(item.media_geral));
 
                 const ctx = document.getElementById('graficoMedia').getContext('2d');
