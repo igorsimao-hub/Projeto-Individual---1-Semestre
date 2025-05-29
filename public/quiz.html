@@ -5,44 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Avaliação de Filme</title>
   <link rel="icon" href="./assets/icon/ICONE_TARANTINO.png" />
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-    }
-
-    #avaliacaoFilme {
-      display: none;
-      flex-direction: column;
-      gap: 12px;
-      border: 1px solid #ccc;
-      padding: 20px;
-      max-width: 500px;
-    }
-
-    .criterio {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .criterio label {
-      flex: 1;
-    }
-
-    .criterio input {
-      width: 60px;
-    }
-
-    #resumo {
-      margin-top: 20px;
-      font-weight: bold;
-    }
-  </style>
+  <link rel="stylesheet" href="./css/quiz.css">
+  <link rel="stylesheet" href="./css/botao.css">
 </head>
-<body onload="esconderFormulario()">
-  <button id="btnIniciar" onclick="mostrarFormulario()">Avaliar Filme</button>
 
+<body onload="esconderFormulario()">
+
+<!-- From Uiverse.io by MuhammadHasann --> 
+<div class="container-button">
+  <div class="hover bt-1"></div>
+  <div class="hover bt-2"></div>
+  <div class="hover bt-3"></div>
+  <div class="hover bt-4"></div>
+  <div class="hover bt-5"></div>
+  <div class="hover bt-6"></div>
+  <button class="botaoAvaliar" onclick="mostrarFormulario()">Avaliar Filme</button>
+</div>
+
+
+  <!-- <button class="" id="btnIniciar" onclick="mostrarFormulario()">Avaliar Filme</button> -->
+  <div id="container">
   <div id="avaliacaoFilme">
     <h2>Avaliação do Filme</h2>
 
@@ -87,10 +69,30 @@
 
     <div id="resumo"></div>
   </div>
-  <div id="linkDash">
-    <a href="dashboards.html">Veja as criticas</a>
-  </div>
 
+  <div class="botao">
+    <a href="./dashboards.html">
+      <button class="botaoBonito">
+        <p>Avaliações</p>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="4"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M14 5l7 7m0 0l-7 7m7-7H3"
+            ></path>
+          </svg>
+      </button>
+    </a>
+  </div>
+</div>
+  
   <script>
     function esconderFormulario() {
       document.getElementById('avaliacaoFilme').style.display = "none";

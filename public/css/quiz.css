@@ -1,0 +1,52 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+#container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10%;
+  flex-direction: column;
+}
+
+#avaliacaoFilme {
+  display: none;
+  flex-direction: column;
+  gap: 12px;
+  border: 1px solid #ccc;
+  padding: 20px;
+  max-width: 500px;
+}
+
+.criterio {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.criterio label {
+  flex: 1;
+}
+
+.criterio input {
+  width: 60px;
+}
+
+#resumo {
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+.botao {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin:5%;
+}
