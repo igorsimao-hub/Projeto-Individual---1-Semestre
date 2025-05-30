@@ -7,82 +7,147 @@
     <link rel="stylesheet" href="./css/dashboardsIgor.css">
 </head>
 <body>
-    <h2>Média geral dos filmes</h2>
-    <canvas id="graficoMedia" width="600" height="400"></canvas>
+    <header>
+        <nav>
+            <h1>PulpCine | Quentin Tarantino</h1>
+            <ul>
+                <li><a href="#">Início</a></li>
+                <li><a href="#">Login</a></li>
+                <li><a href="#">Cadastro</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <div id="radarCharts"></div>
+    <section class="banner">
+        <img class="imgBanner" src="./assets/imgs/Banner Dashboard.webp" alt="">
+        <h2>Média geral dos filmes</h2>
+        <p>Veja como os filmes de Tarantino estão sendo avaliados pelos usuários!</p>
+    </section>
+
+    <section class="kpis">
+        <div class="card">
+            <h3>Total de Avaliações</h3>
+            <p>124</p>
+        </div>
+        <div class="card">
+            <h3>Média Geral</h3>
+            <p>8.5</p>
+        </div>
+        <div class="card">
+            <h3>Filmes Avaliados</h3>
+            <p>6</p>
+        </div>
+    </section>
+
+    <section class="graficos">
+        <h3>Média Geral dos Filmes</h3>
+        <canvas id="graficoMedia" width="600" height="400"></canvas>
+
+        <h3>Análise por Critério</h3>
+        <div id="radarCharts" class="radar-grid"></div>
+    </section>
+
+    <footer>
+        <p>© 2025 PulpCine - Todos os Direitos Reservados</p>
+    </footer>
+
+    <button id="topBtn">⬆️</button>
 
     <script>
-        
+        // Gráfico de barras
         fetch('/avaliacao/mediaPorFilme')
             .then(res => res.json())
             .then(dados => {
-                console.log(dados); // adicionei o console.log pq esatava dando erro e não sabia do que se tratava
-                const filmes = dados.map(item => `${item.nome_filme}`);
+                const filmes = dados.map(item => item.nome_filme);
                 const medias = dados.map(item => Number(item.media_geral));
-
                 const ctx = document.getElementById('graficoMedia').getContext('2d');
-                const grafico = new Chart(ctx, {
+                new Chart(ctx, {
                     type: 'bar',
                     data: {
                         labels: filmes,
                         datasets: [{
                             label: 'Média Geral',
                             data: medias,
-                            backgroundColor: 'rgba(255, 99, 132, 0.6)',
-                            borderColor: 'rgba(255, 99, 132, 1)',
-                            borderWidth: 1
+                            backgroundColor: 'rgba(200, 30, 30, 0.7)',
+                            borderColor: 'rgba(120, 0, 0, 1)',
+                            borderWidth: 2
                         }]
                     },
                     options: {
                         scales: {
+                            x: {
+                                ticks: { color: '#fff' } // Cor dos nomes dos filmes
+                            },
                             y: {
                                 beginAtZero: true,
-                                max: 10
+                                max: 10,
+                                ticks: { color: '#fff' } // Cor dos números do eixo Y
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                labels: { color: '#fff' } // Cor do texto da legenda
                             }
                         }
                     }
                 });
             });
 
-        
-        // Gráficos radar para cada filme
-       fetch('/avaliacao/mediasCriterioPorFilme')
-    .then(res => res.json())
-    .then(data => {
-        const labels = ["Enredo", "Trilha Sonora", "Atuação", "Direção", "Fotografia"];
-        const radarContainer = document.getElementById('radarCharts');
+        // Gráficos radar
+        fetch('/avaliacao/mediasCriterioPorFilme')
+            .then(res => res.json())
+            .then(data => {
+                const labels = ["Enredo", "Trilha Sonora", "Atuação", "Direção", "Fotografia"];
+                const radarContainer = document.getElementById('radarCharts');
 
-        data.forEach(filme => {
-            const canvas = document.createElement('canvas');
-            canvas.id = `radar-${filme.nome_filme}`;
-            canvas.width = 400;
-            canvas.height = 400;
-            radarContainer.appendChild(canvas);
+                data.forEach(filme => {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = 300;
+                    canvas.height = 300;
+                    radarContainer.appendChild(canvas);
 
-            const ctx = canvas.getContext('2d');
-            new Chart(ctx, {
-                type: 'radar',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: filme.nome_filme,
-                        data: [
-                            filme.media_enredo,
-                            filme.media_trilha,
-                            filme.media_atuacao,
-                            filme.media_direcao,
-                            filme.media_foto
-                        ],
-                        fill: true,
-                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                        borderColor: 'rgb(54, 162, 235)',
-                        pointBackgroundColor: 'rgb(54, 162, 235)'
-                    }]
-                }
+                    const ctx = canvas.getContext('2d');
+                    new Chart(ctx, {
+                        type: 'radar',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: filme.nome_filme,
+                                data: [
+                                    filme.media_enredo,
+                                    filme.media_trilha,
+                                    filme.media_atuacao,
+                                    filme.media_direcao,
+                                    filme.media_foto
+                                ],
+                                fill: true,
+                                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                                borderColor: 'rgb(54, 162, 235)',
+                                pointBackgroundColor: 'rgb(54, 162, 235)'
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                r: {
+                                    pointLabels: { color: '#fff', font: { size: 14 } }, // Cor dos nomes dos critérios
+                                    angleLines: { color: '#888' },
+                                    grid: { color: '#555' },
+                                    ticks: { color: '#fff', backdropColor: 'transparent' } // Cor dos números
+                                }
+                            },
+                            plugins: {
+                                legend: {
+                                    labels: { color: '#fff' } // Cor da legenda
+                                }
+                            }
+                        }
+                    });
+                });
             });
-        });
-    });
+
+        // Botão voltar ao topo
+        const topBtn = document.getElementById("topBtn");
+        topBtn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
     </script>
 </body>
 </html>

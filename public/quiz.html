@@ -11,6 +11,20 @@
 
 <body onload="esconderFormulario()">
 
+<header class="header">
+  <div class="container">
+    <h1 class="titulo">PulpCine Dashboard</h1>
+    <nav>
+      <ul class="navbar">
+        <li><a href="index.html">Início</a></li>
+        <li><a href="filme.html">Filmes</a></li>
+        <li><a href="quiz.html">Quiz</a></li>
+        <li><a href="login.html" onclick="sessionStorage.clear()">Sair</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
 <!-- From Uiverse.io by MuhammadHasann --> 
 <div class="container-button">
   <div class="hover bt-1"></div>
@@ -26,7 +40,7 @@
   <!-- <button class="" id="btnIniciar" onclick="mostrarFormulario()">Avaliar Filme</button> -->
   <div id="container">
   <div id="avaliacaoFilme">
-    <h2>Avaliação do Filme</h2>
+    <h2 class="dashboard-title">Média geral dos filmes</h2>
 
     <div class="criterio">
       <label for="filme">Escolha o filme:</label>

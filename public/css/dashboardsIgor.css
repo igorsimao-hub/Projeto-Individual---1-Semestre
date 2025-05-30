@@ -1,26 +1,142 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-  #graficoMedia {
+body {
+    background: #1a1a1a;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+}
+
+header {
+    background: #800000;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    font-size: 1.5rem;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.banner {
+    text-align: center;
+    padding: 2rem;
+    background: #333;
+    margin: 1rem 0;
+}
+
+.imgBanner {
+    width: 100%;
     max-width: 600px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.5);
+}
+
+.banner h2 {
+    font-size: 2rem;
+    color: #FFD700;
+    margin-bottom: 0.5rem;
+}
+
+.graficos h3 {
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 1rem;
+}
+
+.kpis {
+    display: flex;
+    justify-content: space-around;
+    margin: 2rem 0;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.card {
+    background: #262626;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.5);
+}
+
+.card h3 {
+    color: #FFD700;
+    margin-bottom: 0.5rem;
+}
+
+.graficos {
+    padding: 2rem;
+}
+
+/* Gráfico de barras */
+#graficoMedia {
+    max-width: 600px;
+    max-height: 600px;
+    width: 100%;
+    height: auto;
+    margin: 0 auto 2rem auto;
+    display: block;
+}
+
+/* Gráficos radar */
+.radar-grid canvas {
+    max-width: 400px;
     max-height: 400px;
     width: 100%;
     height: auto;
-    display: block;
-    margin: 20px auto;
-  }
+    margin: 0 auto;
+}
 
-  #radarCharts canvas {
-    max-width: 300px;
-    max-height: 300px;
-    width: 100%;
-    height: auto;
-    display: block;
-    margin: 20px auto;
-  }
+.radar-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 1rem;
+}
 
-  #radarCharts {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-  }
+footer {
+    text-align: center;
+    padding: 1rem;
+    background: #111;
+    font-size: 0.8rem;
+    margin-top: 2rem;
+}
 
+#topBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #800000;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.5);
+}
+
+canvas {
+    background: #333;
+    padding: 0.5rem;
+    border-radius: 8px;
+}
