@@ -1,52 +1,138 @@
-*{
-    margin: 0;
-    padding: 0;
+:root {
+  --fundo-principal: #2C0000;
+  --texto-principal: #FAF3E0;
+  --amarelo-suave: #E0B300;
+  --header-bg: #A67C00;
+  --box-bg: #3D0000;
+  --section-bg: #1A1A1A;
+  --card-bg: #2e2e2e;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  font-family: Arial, sans-serif;
-  padding: 20px;
+  font-family: 'Cinzel', serif;
+  background-color: var(--fundo-principal);
+  color: var(--texto-principal);
+  min-height: 100vh;
+}
+
+.header {
+  background-color: var(--box-bg);
+  padding: 1rem 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.titulo {
+  font-size: 1.8rem;
+  color: var(--amarelo-suave);
+  text-align: center;
+}
+
+.navbar {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: var(--texto-principal);
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.navbar a:hover {
+  color: var(--amarelo-suave);
 }
 
 #container {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 10%;
   flex-direction: column;
+  align-items: center;
+  margin: 3rem auto 2rem auto;
+  max-width: 500px;
+  background: var(--section-bg);
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(44,0,0,0.3);
+  padding: 2rem 1.5rem;
 }
 
 #avaliacaoFilme {
-  display: none;
+  display: flex;
   flex-direction: column;
-  gap: 12px;
-  border: 1px solid #ccc;
-  padding: 20px;
-  max-width: 500px;
+  gap: 18px;
+  width: 100%;
+}
+
+.dashboard-title {
+  color: var(--amarelo-suave);
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
 }
 
 .criterio {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background: var(--card-bg);
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
 }
 
 .criterio label {
   flex: 1;
+  color: var(--amarelo-suave);
 }
 
-.criterio input {
-  width: 60px;
+.criterio input, .criterio select {
+  width: 70px;
+  padding: 0.3rem;
+  border-radius: 5px;
+  border: 1px solid var(--amarelo-suave);
+  background: #fff;
+  color: #222;
+  font-weight: bold;
+}
+
+.botaoEnviarAvalicao {
+  background: var(--amarelo-suave);
+  color: var(--fundo-principal);
+  border: none;
+  border-radius: 8px;
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 1rem auto 0 auto;
+  cursor: pointer;
+  transition: background 0.3s;
+  display: block;
+}
+
+.botaoEnviarAvalicao:hover {
+  background: #FFD700;
+  color: #800000;
 }
 
 #resumo {
   margin-top: 20px;
   font-weight: bold;
+  color: var(--amarelo-suave);
+  text-align: center;
 }
 
 .botao {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin:5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0 0 0;
 }
+

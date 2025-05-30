@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="./css/botao.css">
 </head>
 
-<body onload="esconderFormulario()">
+<body>
 
 <header class="header">
   <div class="container">
@@ -33,13 +33,10 @@
   <div class="hover bt-4"></div>
   <div class="hover bt-5"></div>
   <div class="hover bt-6"></div>
-  <button class="botaoAvaliar" onclick="mostrarFormulario()">Avaliar Filme</button>
 </div>
 
-
-  <!-- <button class="" id="btnIniciar" onclick="mostrarFormulario()">Avaliar Filme</button> -->
-  <div id="container">
-  <div id="avaliacaoFilme">
+<div id="container">
+  <div id="avaliacaoFilme" style="display: flex;">
     <h2 class="dashboard-title">Média geral dos filmes</h2>
 
     <div class="criterio">
@@ -79,7 +76,7 @@
       <input type="number" id="fotografia" min="1" max="10" value="5"/>
     </div>
 
-    <button onclick="enviarAvaliacao()">Enviar Avaliação</button>
+    <button class="botaoEnviarAvalicao" onclick="enviarAvaliacao()">Enviar Avaliação</button>
 
     <div id="resumo"></div>
   </div>
@@ -107,40 +104,29 @@
   </div>
 </div>
   
-  <script>
-    function esconderFormulario() {
-      document.getElementById('avaliacaoFilme').style.display = "none";
-    }
+<script>
+  function enviarAvaliacao() {
+    const fk_filme = document.getElementById("filme").value // essa variavel guarda o id do filme
+    const fk_usuario = sessionStorage.getItem("ID_USUARIO") // essa variavel guarda o id do usuario logado
+    const avaliacao = {
+      enredo: Number(document.getElementById("enredo").value),
+      trilha: Number(document.getElementById("trilha").value),
+      atuacao: Number(document.getElementById("atuacao").value),
+      direcao: Number(document.getElementById("direcao").value),
+      fotografia: Number(document.getElementById("fotografia").value)
+    };
 
-    function mostrarFormulario() {
-      document.getElementById('avaliacaoFilme').style.display = "flex";
-      document.getElementById('btnIniciar').style.display = "none";
-    }
+    const media =
+      (avaliacao.enredo + avaliacao.trilha + avaliacao.atuacao + avaliacao.direcao + avaliacao.fotografia) / 5;
 
-    function enviarAvaliacao() {
-      const fk_filme = document.getElementById("filme").value // essa variavel guarda o id do filme
-      const fk_usuario = sessionStorage.getItem("ID_USUARIO") // essa variavel guarda o id do usuario logado
-      const avaliacao = {
-        enredo: Number(document.getElementById("enredo").value),
-        trilha: Number(document.getElementById("trilha").value),
-        atuacao: Number(document.getElementById("atuacao").value),
-        direcao: Number(document.getElementById("direcao").value),
-        fotografia: Number(document.getElementById("fotografia").value)
-      };
+    document.getElementById("resumo").innerHTML =
+      "Avaliação enviada com sucesso! Média: " + media.toFixed(1);
 
-      const media =
-        (avaliacao.enredo + avaliacao.trilha + avaliacao.atuacao + avaliacao.direcao + avaliacao.fotografia) / 5;
-
-      document.getElementById("resumo").innerHTML =
-        "Avaliação enviada com sucesso! Média: " + media.toFixed(1);
-
-        
-      // Enviar a avaliação para o servidor:
-
-      fetch('http://localhost:3333/avaliacao/avaliacoes', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
+    // Enviar a avaliação para o servidor:
+    fetch('http://localhost:3333/avaliacao/avaliacoes', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
         nota_enredo: avaliacao.enredo,
         nota_trilha_sonora: avaliacao.trilha,
         nota_atuacao: avaliacao.atuacao,
@@ -149,14 +135,13 @@
         momento: avaliacao.momento,
         fk_usuario: fk_usuario,
         fk_filme: fk_filme     // trocar pelo id do filme atual
-       })
       })
-      .then(res => res.json())
-      .then(data => {
-       console.log("Avaliação salva!", data);
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log("Avaliação salva!", data);
     });
-
-    }
-  </script>
+  }
+</script>
 </body>
 </html>

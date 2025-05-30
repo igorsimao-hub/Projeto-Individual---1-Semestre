@@ -142,10 +142,16 @@ section.objetivo{
 }
 
 section.galeria-filmes{
-  padding-left: 20px;
-  padding-right: 20px;
-  width: 1250px;
-  margin-right: 200px;
+   width: 100vw;
+  max-width: 100vw;
+  margin: 0 auto;
+  padding: 3rem 2vw;
+  background: var(--section-bg);
+  border-radius: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
 }
 
 section.sobre-diretor {
@@ -177,10 +183,13 @@ section ul {
 
 /* Galeria de Filmes */
 .cards {
+ width: 100%;
+  max-width: 1400px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 1.5rem;
-  margin-top: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+  margin: 0 auto; 
 }
 
 .card-filme {
