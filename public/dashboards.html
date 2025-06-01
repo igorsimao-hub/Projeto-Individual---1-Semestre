@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Dashboard | PulpCine</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="icon" href="./assets/icon/ICONE_TARANTINO.png">
     <link rel="stylesheet" href="./css/dashboardsIgor.css">
 </head>
 <body>
@@ -11,33 +12,46 @@
         <nav>
             <h1>PulpCine | Quentin Tarantino</h1>
             <ul>
-                <li><a href="#">Início</a></li>
-                <li><a href="#">Login</a></li>
-                <li><a href="#">Cadastro</a></li>
+                <li><a href="./index.html">Início</a></li>
+                <li><a href="./login.html">Login</a></li>
+                <li><a href="./cadastro.html">Cadastro</a></li>
             </ul>
         </nav>
     </header>
-
+    
     <section class="banner">
         <img class="imgBanner" src="./assets/imgs/Banner Dashboard.webp" alt="">
         <h2>Média geral dos filmes</h2>
         <p>Veja como os filmes de Tarantino estão sendo avaliados pelos usuários!</p>
     </section>
+    <div class="filtro-filme" style="text-align:center; margin-bottom: 1.5rem;">
+        <label for="selectFilme" style="color:#FFD700; font-weight:bold;">Escolha o filme:</label>
+        <select id="selectFilme" style="padding:0.5rem; border-radius:6px; margin-left:0.5rem;">
+            <!-- Opções serão preenchidas via JS -->
+        </select>
+    </div>
 
+
+    
+    <!-- Seção de KPIs -->
     <section class="kpis">
         <div class="card">
             <h3>Total de Avaliações</h3>
-            <p>124</p>
+            <p id="kpiTotalAvaliacoes">-</p>
         </div>
         <div class="card">
             <h3>Média Geral</h3>
-            <p>8.5</p>
+            <p id="kpiMediaGeral">-</p>
         </div>
         <div class="card">
             <h3>Filmes Avaliados</h3>
-            <p>6</p>
+            <p id="kpiFilmesAvaliados">-</p>
         </div>
     </section>
+
+
+
+
 
     <section class="graficos">
         <h3>Média Geral dos Filmes</h3>
@@ -47,11 +61,10 @@
         <div id="radarCharts" class="radar-grid"></div>
     </section>
 
+
     <footer>
         <p>© 2025 PulpCine - Todos os Direitos Reservados</p>
     </footer>
-
-    <button id="topBtn">⬆️</button>
 
     <script>
         // Gráfico de barras
@@ -144,10 +157,6 @@
                     });
                 });
             });
-
-        // Botão voltar ao topo
-        const topBtn = document.getElementById("topBtn");
-        topBtn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
     </script>
 </body>
 </html>

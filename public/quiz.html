@@ -25,23 +25,13 @@
   </div>
 </header>
 
-<!-- From Uiverse.io by MuhammadHasann --> 
-<div class="container-button">
-  <div class="hover bt-1"></div>
-  <div class="hover bt-2"></div>
-  <div class="hover bt-3"></div>
-  <div class="hover bt-4"></div>
-  <div class="hover bt-5"></div>
-  <div class="hover bt-6"></div>
-</div>
-
 <div id="container">
   <div id="avaliacaoFilme" style="display: flex;">
-    <h2 class="dashboard-title">Média geral dos filmes</h2>
+    <h2 class="dashboard-title">Avalie os filmes do Trantino</h2>
 
     <div class="criterio">
       <label for="filme">Escolha o filme:</label>
-      <select id="filme">
+      <select id="id_filme">
         <option value="1">Cães de Aluguel</option>
         <option value="2">Pulp Fiction</option>
         <option value="3">Kill Bill Vol 1 & 2</option>
@@ -52,33 +42,33 @@
     </div>
 
     <div class="criterio">
-      <label for="enredo">Enredo:</label>
-      <input type="number" id="enredo" min="1" max="10" value="5"/>
+      <label>Enredo:</label>
+      <input type="number" id="ipt_enredo" min="1" max="10" value="5"/>
     </div>
 
     <div class="criterio">
-      <label for="trilha">Trilha sonora:</label>
-      <input type="number" id="trilha" min="1" max="10" value="5"/>
+      <label>Trilha sonora:</label>
+      <input type="number" id="ipt_trilha" min="1" max="10" value="5"/>
     </div>
 
     <div class="criterio">
-      <label for="atuacao">Atuação:</label>
-      <input type="number" id="atuacao" min="1" max="10" value="5"/>
+      <label>Atuação:</label>
+      <input type="number" id="ipt_atuacao" min="1" max="10" value="5"/>
     </div>
 
     <div class="criterio">
-      <label for="direcao">Direção:</label>
-      <input type="number" id="direcao" min="1" max="10" value="5"/>
+      <label>Direção:</label>
+      <input type="number" id="ipt_direcao" min="1" max="10" value="5"/>
     </div>
 
     <div class="criterio">
-      <label for="fotografia">Fotografia:</label>
-      <input type="number" id="fotografia" min="1" max="10" value="5"/>
+      <label>Fotografia:</label>
+      <input type="number" id="ipt_fotografia" min="1" max="10" value="5"/>
     </div>
 
     <button class="botaoEnviarAvalicao" onclick="enviarAvaliacao()">Enviar Avaliação</button>
 
-    <div id="resumo"></div>
+    <div id="frase"></div>
   </div>
 
   <div class="botao">
@@ -106,26 +96,34 @@
   
 <script>
   function enviarAvaliacao() {
-    const fk_filme = document.getElementById("filme").value // essa variavel guarda o id do filme
+
+    var enredo = Number(ipt_enredo.value)
+    var trilha = Number(ipt_trilha.value)
+    var atuacao = Number(ipt_atuacao.value)
+    var direcao = Number(ipt_direcao.value)
+    var fotografia = Number(ipt_fotografia.value)
+    
+    const fk_filme = document.getElementById("id_filme").value // essa variavel guarda o id do filme
     const fk_usuario = sessionStorage.getItem("ID_USUARIO") // essa variavel guarda o id do usuario logado
+    
+   
+
     const avaliacao = {
-      enredo: Number(document.getElementById("enredo").value),
-      trilha: Number(document.getElementById("trilha").value),
-      atuacao: Number(document.getElementById("atuacao").value),
-      direcao: Number(document.getElementById("direcao").value),
-      fotografia: Number(document.getElementById("fotografia").value)
-    };
+      enredo: enredo,
+      trilha: trilha,
+      atuacao: atuacao,
+      direcao: direcao,
+      fotografia: fotografia
+    }
 
-    const media =
-      (avaliacao.enredo + avaliacao.trilha + avaliacao.atuacao + avaliacao.direcao + avaliacao.fotografia) / 5;
+    const media = (avaliacao.enredo + avaliacao.trilha + avaliacao.atuacao + avaliacao.direcao + avaliacao.fotografia) / 5
 
-    document.getElementById("resumo").innerHTML =
-      "Avaliação enviada com sucesso! Média: " + media.toFixed(1);
+    frase.innerHTML = 'Avaliação enviada com sucesso! Média:'  + media.toFixed(1);
 
     // Enviar a avaliação para o servidor:
-    fetch('http://localhost:3333/avaliacao/avaliacoes', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+    fetch('http://localhost:3333/avaliacao/avaliacoes', { //endpoint
+      method: 'POST', // indica q ta enviando dados
+      headers: { 'Content-Type': 'application/json' }, //define o counteduo como jason
       body: JSON.stringify({
         nota_enredo: avaliacao.enredo,
         nota_trilha_sonora: avaliacao.trilha,
@@ -137,7 +135,7 @@
         fk_filme: fk_filme     // trocar pelo id do filme atual
       })
     })
-    .then(res => res.json())
+    .then(res => res.json()) // converte a resposta do servidor para json
     .then(data => {
       console.log("Avaliação salva!", data);
     });
