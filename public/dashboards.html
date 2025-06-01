@@ -66,14 +66,20 @@
         <p>© 2025 PulpCine - Todos os Direitos Reservados</p>
     </footer>
 
-    <script>
-        // Gráfico de barras
+   <script>
+    
+    let filmesData = [];
+    let avaliacoesData = [];
+
+    function desenharGraficos() {
+        // Gráfico de barras - Média Geral por Filme
         fetch('/avaliacao/mediaPorFilme')
             .then(res => res.json())
             .then(dados => {
                 const filmes = dados.map(item => item.nome_filme);
                 const medias = dados.map(item => Number(item.media_geral));
                 const ctx = document.getElementById('graficoMedia').getContext('2d');
+
                 new Chart(ctx, {
                     type: 'bar',
                     data: {
@@ -89,29 +95,30 @@
                     options: {
                         scales: {
                             x: {
-                                ticks: { color: '#fff' } // Cor dos nomes dos filmes
+                                ticks: { color: '#fff' }
                             },
                             y: {
                                 beginAtZero: true,
                                 max: 10,
-                                ticks: { color: '#fff' } // Cor dos números do eixo Y
+                                ticks: { color: '#fff' }
                             }
                         },
                         plugins: {
                             legend: {
-                                labels: { color: '#fff' } // Cor do texto da legenda
+                                labels: { color: '#fff' }
                             }
                         }
                     }
                 });
             });
 
-        // Gráficos radar
+        // Gráficos Radar - Médias por Critério para cada Filme
         fetch('/avaliacao/mediasCriterioPorFilme')
             .then(res => res.json())
             .then(data => {
                 const labels = ["Enredo", "Trilha Sonora", "Atuação", "Direção", "Fotografia"];
                 const radarContainer = document.getElementById('radarCharts');
+                radarContainer.innerHTML = '';  // Limpa antes de adicionar novos
 
                 data.forEach(filme => {
                     const canvas = document.createElement('canvas');
@@ -120,6 +127,7 @@
                     radarContainer.appendChild(canvas);
 
                     const ctx = canvas.getContext('2d');
+
                     new Chart(ctx, {
                         type: 'radar',
                         data: {
@@ -142,21 +150,63 @@
                         options: {
                             scales: {
                                 r: {
-                                    pointLabels: { color: '#fff', font: { size: 14 } }, // Cor dos nomes dos critérios
+                                    pointLabels: { color: '#fff', font: { size: 14 } },
                                     angleLines: { color: '#888' },
                                     grid: { color: '#555' },
-                                    ticks: { color: '#fff', backdropColor: 'transparent' } // Cor dos números
+                                    ticks: { color: '#fff', backdropColor: 'transparent' }
                                 }
                             },
                             plugins: {
                                 legend: {
-                                    labels: { color: '#fff' } // Cor da legenda
+                                    labels: { color: '#fff' }
                                 }
                             }
                         }
                     });
                 });
             });
-    </script>
-</body>
-</html>
+    }
+
+    function preencherSelectFilmes() {
+        const select = document.getElementById('selectFilme');
+        select.innerHTML = '';
+
+        filmesData.forEach(filme => {
+            const option = document.createElement('option');
+            option.value = filme.fk_filme
+            option.textContent = filme.nome_filme;
+            select.appendChild(option);
+        });
+
+        if (filmesData.length > 0) {
+            atualizarKPIs(select.value);
+        }
+    }
+
+    function atualizarKPIs(filmeId) {
+       
+        const filme = filmesData.find(f => f.fk_filme== filmeId);
+        const avaliacoesFilme = avaliacoesData.filter(a => a.fk_filme == filmeId);
+
+        kpiTotalAvaliacoes.innerHTML = avaliacoesFilme.length;
+        document.getElementById('kpiMediaGeral').innerHTML = filme ? Number(filme.media_geral).toFixed(2) : '-';
+        kpiFilmesAvaliados.innerHTML = filmesData.length
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        Promise.all([
+            fetch('/avaliacao/mediaPorFilme').then(res => res.json()),
+            fetch('/avaliacao/todasAvaliacoes').then(res => res.json())
+        ]).then(([filmes, avaliacoes]) => {
+            filmesData = filmes;
+            avaliacoesData = avaliacoes;
+
+            preencherSelectFilmes();
+            desenharGraficos();
+        });
+
+        document.getElementById('selectFilme').addEventListener('change', function () {
+            atualizarKPIs(this.value);
+        });
+    });
+</script>

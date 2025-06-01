@@ -9,4 +9,8 @@ router.post('/avaliacoes', avaliacaoController.cadastrar);
 router.get("/mediaPorFilme", avaliacaoController.obterMediaPorFilme);
 router.get("/mediasCriterioPorFilme", avaliacaoController.obterMediasCriterioPorFilme);
 
+
+// rota para KPI
+router.get('/todasAvaliacoes', avaliacaoController.listarTodasAvaliacoes);
+
 module.exports = router;

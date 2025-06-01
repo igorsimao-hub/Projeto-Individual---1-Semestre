@@ -61,9 +61,16 @@ function mediasCriterioPorFilme() {
 }
 
 
+function listarTodasAvaliacoes() {
+    const instrucao = `SELECT * FROM avaliacao;`;
+    return db.executar(instrucao);
+}
+
+
 module.exports = {
     inserirAvaliacao,
     mediaPorFilme,
-    mediasCriterioPorFilme
+    mediasCriterioPorFilme,
+    listarTodasAvaliacoes
 };
 

@@ -55,9 +55,18 @@ function obterMediasCriterioPorFilme(req, res) {
         });
 }
 
+// função para gerar na KPI:
+function listarTodasAvaliacoes(req, res) {
+    avaliacaoModel.listarTodasAvaliacoes()
+        .then(resultado => res.json(resultado))
+        .catch(erro => res.status(500).json(erro));
+}
+
+
 
 module.exports = {
     cadastrar,
     obterMediaPorFilme,
-    obterMediasCriterioPorFilme
+    obterMediasCriterioPorFilme,
+    listarTodasAvaliacoes
 };
