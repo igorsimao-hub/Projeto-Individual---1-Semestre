@@ -1,217 +1,271 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Dashboard | PulpCine</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="icon" href="./assets/icon/ICONE_TARANTINO.png">
-    <link rel="stylesheet" href="./css/dashboardsIgor.css">
-</head>
-<body>
+    <link rel="icon" href="./assets/icon/ICONE_TARANTINO.png" />
+    <link rel="stylesheet" href="./css/dashboardsIgor.css" />
+  </head>
+  <body>
     <header>
-        <nav>
-            <h1>PulpCine | Quentin Tarantino</h1>
-            <ul>
-                <li><a href="./index.html">Início</a></li>
-                <li>|</li>
-                <li><a href="./login.html">Login</a></li>
-                <li><a href="./cadastro.html">Cadastro</a></li>
-            </ul>
-        </nav>
+      <nav>
+        <h1>PulpCine | Quentin Tarantino</h1>
+        <ul>
+          <li><a href="./index.html">Início</a></li>
+          <li>|</li>
+          <li><a href="./login.html">Login</a></li>
+          <li><a href="./cadastro.html">Cadastro</a></li>
+        </ul>
+      </nav>
     </header>
-    
+
     <section class="banner">
-        <img class="imgBanner" src="./assets/imgs/Banner Dashboard.webp" alt="">
-        <h2>Olá, <span id="b_usuario">usuário</span>!</h2>
-        <h2>Média geral dos filmes</h2>
-        <p>Veja como os filmes de Tarantino estão sendo avaliados pelos usuários!</p>
+      <img class="imgBanner" src="./assets/imgs/Banner Dashboard.webp" alt="" />
+      <h2>Olá, <span id="nome_usuario">usuário</span>!</h2>
+      <h2>Média geral dos filmes</h2>
+      <p>
+        Veja como os filmes de Tarantino estão sendo avaliados pelos usuários!
+      </p>
     </section>
-    <div class="filtro-filme" style="text-align:center; margin-bottom: 1.5rem;">
-        <label for="selectFilme" style="color:#FFD700; font-weight:bold;">Escolha o filme:</label>
-        <select id="selectFilme" style="padding:0.5rem; border-radius:6px; margin-left:0.5rem;">
-            <!-- Opções serão preenchidas via JS -->
-        </select>
+    <div class="filtro-filme" style="text-align: center; margin-bottom: 1.5rem">
+      <label for="selectFilme" style="color: #ffd700; font-weight: bold"
+        >Escolha o filme:</label
+      >
+      <select
+        id="selectFilme"
+        style="padding: 0.5rem; border-radius: 6px; margin-left: 0.5rem"
+      >
+        <!-- Opções serão preenchidas via JS -->
+      </select>
     </div>
 
-
-    
     <!-- Seção de KPIs -->
     <section class="kpis">
-        <div class="card">
-            <h3>Total de Avaliações</h3>
-            <p id="kpiTotalAvaliacoes">-</p>
-        </div>
-        <div class="card">
-            <h3>Média Geral</h3>
-            <p id="kpiMediaGeral">-</p>
-        </div>
-        <div class="card">
-            <h3>Filmes Avaliados</h3>
-            <p id="kpiFilmesAvaliados">-</p>
-        </div>
+      <div class="card">
+        <h3>Total de Avaliações</h3>
+        <p id="kpiTotalAvaliacoes">-</p>
+      </div>
+      <div class="card">
+        <h3>Média Geral</h3>
+        <p id="kpiMediaGeral">-</p>
+      </div>
+      <div class="card">
+        <h3>Filmes Avaliados</h3>
+        <p id="kpiFilmesAvaliados">-</p>
+      </div>
     </section>
-
-
-
-
 
     <section class="graficos">
-        <h3>Média Geral dos Filmes</h3>
-        <canvas id="graficoMedia" width="600" height="400"></canvas>
+      <h3>Média Geral dos Filmes</h3>
+      <canvas id="graficoMedia" width="600" height="400"></canvas>
 
-        <h3>Análise por Critério</h3>
-        <div id="radarCharts" class="radar-grid"></div>
+      <h3>Análise por Critério</h3>
+      <div id="radarCharts" class="radar-grid"></div>
     </section>
 
-
     <footer>
-        <p>© 2025 PulpCine - Todos os Direitos Reservados</p>
+      <p>© 2025 PulpCine - Todos os Direitos Reservados</p>
     </footer>
 
-   <script>
-    
-    let filmesData = [];
-    let avaliacoesData = [];
+  </body>
+  
+  <script>
+    // 1. Variáveis globais
+      let filmesData = [];
+      let avaliacoesData = [];
 
-    function desenharGraficos() {
-
-        b_usuario.innerHTML = sessionStorage.NOME_USUARIO;  
+      // 2. Função que desenha os gráficos (idêntica à explicada antes)
+      function desenharGraficos() {
+        nome_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
         // Gráfico de barras - Média Geral por Filme
-        fetch('/avaliacao/mediaPorFilme')
-            .then(res => res.json())
-            .then(dados => {
-                const filmes = dados.map(item => item.nome_filme);
-                const medias = dados.map(item => Number(item.media_geral));
-                const ctx = document.getElementById('graficoMedia').getContext('2d');
+        fetch("/avaliacao/mediaPorFilme")
+          .then(function (res) {
+            return res.json();
+          })
+          .then(function (dados) {
+            let filmes = [];
+            let medias = [];
 
-                new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: filmes,
-                        datasets: [{
-                            label: 'Média Geral',
-                            data: medias,
-                            backgroundColor: 'rgba(200, 30, 30, 0.7)',
-                            borderColor: 'rgba(120, 0, 0, 1)',
-                            borderWidth: 2
-                        }]
+            for (let i = 0; i < dados.length; i++) {
+              filmes.push(dados[i].nome_filme);
+              medias.push(Number(dados[i].media_geral));
+            }
+
+            const ctx = document
+              .getElementById("graficoMedia")
+              .getContext("2d");
+
+            new Chart(ctx, {
+              type: "bar",
+              data: {
+                labels: filmes,
+                datasets: [
+                  {
+                    label: "Média Geral",
+                    data: medias,
+                    backgroundColor: "rgba(200, 30, 30, 0.7)",
+                    borderColor: "rgba(120, 0, 0, 1)",
+                    borderWidth: 2,
+                  },
+                ],
+              },
+              options: {
+                scales: {
+                  x: { ticks: { color: "#fff" } },
+                  y: { beginAtZero: true, max: 10, ticks: { color: "#fff" } },
+                },
+                plugins: {
+                  legend: { labels: { color: "#fff" } },
+                },
+              },
+            });
+          });
+
+        // Gráficos Radar - Médias por Critério
+        fetch("/avaliacao/mediasCriterioPorFilme")
+          .then(function (res) {
+            return res.json();
+          })
+          .then(function (data) {
+            const labels = [
+              "Enredo",
+              "Trilha Sonora",
+              "Atuação",
+              "Direção",
+              "Fotografia",
+            ];
+            const radarContainer = document.getElementById("radarCharts");
+            radarContainer.innerHTML = "";
+
+            for (let i = 0; i < data.length; i++) {
+              const filme = data[i];
+              const canvas = document.createElement("canvas");
+              canvas.width = 300;
+              canvas.height = 300;
+              radarContainer.appendChild(canvas);
+
+              const ctx = canvas.getContext("2d");
+
+              new Chart(ctx, {
+                type: "radar",
+                data: {
+                  labels: labels,
+                  datasets: [
+                    {
+                      label: filme.nome_filme,
+                      data: [
+                        filme.media_enredo,
+                        filme.media_trilha,
+                        filme.media_atuacao,
+                        filme.media_direcao,
+                        filme.media_foto,
+                      ],
+                      fill: true,
+                      backgroundColor: "rgba(54, 162, 235, 0.2)",
+                      borderColor: "rgb(54, 162, 235)",
+                      pointBackgroundColor: "rgb(54, 162, 235)",
                     },
-                    options: {
-                        scales: {
-                            x: {
-                                ticks: { color: '#fff' }
-                            },
-                            y: {
-                                beginAtZero: true,
-                                max: 10,
-                                ticks: { color: '#fff' }
-                            }
-                        },
-                        plugins: {
-                            legend: {
-                                labels: { color: '#fff' }
-                            }
-                        }
-                    }
-                });
-            });
+                  ],
+                },
+                options: {
+                  scales: {
+                    r: {
+                      pointLabels: { color: "#fff", font: { size: 14 } },
+                      angleLines: { color: "#888" },
+                      grid: { color: "#555" },
+                      ticks: { color: "#fff", backdropColor: "transparent" },
+                    },
+                  },
+                  plugins: {
+                    legend: { labels: { color: "#fff" } },
+                  },
+                },
+              });
+            }
+          });
+      }
 
-        // Gráficos Radar - Médias por Critério para cada Filme
-        fetch('/avaliacao/mediasCriterioPorFilme')
-            .then(res => res.json())
-            .then(data => {
-                const labels = ["Enredo", "Trilha Sonora", "Atuação", "Direção", "Fotografia"];
-                const radarContainer = document.getElementById('radarCharts');
-                radarContainer.innerHTML = '';  // Limpa antes de adicionar novos
+      // 3. Função que preenche o <select> de filmes
+      function preencherSelectFilmes() {
 
-                data.forEach(filme => {
-                    const canvas = document.createElement('canvas');
-                    canvas.width = 300;
-                    canvas.height = 300;
-                    radarContainer.appendChild(canvas);
+        const select = document.getElementById("selectFilme");
+        select.innerHTML = "";
 
-                    const ctx = canvas.getContext('2d');
-
-                    new Chart(ctx, {
-                        type: 'radar',
-                        data: {
-                            labels: labels,
-                            datasets: [{
-                                label: filme.nome_filme,
-                                data: [
-                                    filme.media_enredo,
-                                    filme.media_trilha,
-                                    filme.media_atuacao,
-                                    filme.media_direcao,
-                                    filme.media_foto
-                                ],
-                                fill: true,
-                                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                                borderColor: 'rgb(54, 162, 235)',
-                                pointBackgroundColor: 'rgb(54, 162, 235)'
-                            }]
-                        },
-                        options: {
-                            scales: {
-                                r: {
-                                    pointLabels: { color: '#fff', font: { size: 14 } },
-                                    angleLines: { color: '#888' },
-                                    grid: { color: '#555' },
-                                    ticks: { color: '#fff', backdropColor: 'transparent' }
-                                }
-                            },
-                            plugins: {
-                                legend: {
-                                    labels: { color: '#fff' }
-                                }
-                            }
-                        }
-                    });
-                });
-            });
-    }
-
-    function preencherSelectFilmes() {
-        const select = document.getElementById('selectFilme');
-        select.innerHTML = '';
-
-        filmesData.forEach(filme => {
-            const option = document.createElement('option');
-            option.value = filme.fk_filme
-            option.textContent = filme.nome_filme;
-            select.appendChild(option);
-        });
+        for (let i = 0; i < filmesData.length; i++) {
+          const filme = filmesData[i]
+          const option = document.createElement("option")
+          option.value = filme.fk_filme
+          option.textContent = filme.nome_filme
+          select.appendChild(option)
+        }
 
         if (filmesData.length > 0) {
-            atualizarKPIs(select.value);
+          atualizarKPIs(select.value);
         }
-    }
+      }
 
-    function atualizarKPIs(filmeId) {
-       
-        const filme = filmesData.find(f => f.fk_filme== filmeId);
-        const avaliacoesFilme = avaliacoesData.filter(a => a.fk_filme == filmeId);
+      // 4. Função que atualiza os KPIs para um filme específico
+      function atualizarKPIs(filmeId) {
+
+        let filme = null;
+
+        for (let i = 0; i < filmesData.length; i++) {
+          if (filmesData[i].fk_filme == filmeId) {
+            filme = filmesData[i];
+            break;
+          }
+        }
+
+        let avaliacoesFilme = [];
+        for (let i = 0; i < avaliacoesData.length; i++) {
+          if (avaliacoesData[i].fk_filme == filmeId) {
+            avaliacoesFilme.push(avaliacoesData[i]);
+          }
+        }
 
         kpiTotalAvaliacoes.innerHTML = avaliacoesFilme.length;
-        document.getElementById('kpiMediaGeral').innerHTML = filme ? Number(filme.media_geral).toFixed(2) : '-';
-        kpiFilmesAvaliados.innerHTML = filmesData.length
-    }
 
-    window.addEventListener('DOMContentLoaded', () => {
-        Promise.all([
-            fetch('/avaliacao/mediaPorFilme').then(res => res.json()),
-            fetch('/avaliacao/todasAvaliacoes').then(res => res.json())
-        ]).then(([filmes, avaliacoes]) => {
-            filmesData = filmes;
+        if (filme) {
+          kpiMediaGeral.innerHTML = Number(filme.media_geral).toFixed(2);
+        }
+        else {
+          kpiMediaGeral.innerHTML = "-";
+        }
+
+        kpiFilmesAvaliados.innerHTML = filmesData.length;
+      }
+
+    
+      {
+        // 5.1. Fazer as duas requisições
+        let filmesPromise = fetch("/avaliacao/mediaPorFilme").then(function (res) {
+          return res.json()
+        })
+
+        let avaliacoesPromise = fetch("/avaliacao/todasAvaliacoes").then(function (res) {
+          return res.json();
+        })
+
+        // 5.2. Quando receber filmes, armazenar em filmesData
+        filmesPromise.then(function (filmes) {
+          filmesData = filmes;
+
+          // 5.3. Só então, quando as avaliações chegarem, armazenar e chamar as funções
+          avaliacoesPromise.then(function (avaliacoes) {
             avaliacoesData = avaliacoes;
-
             preencherSelectFilmes();
             desenharGraficos();
+          });
         });
 
-        document.getElementById('selectFilme').addEventListener('change', function () {
+        // 5.4. Registrar o listener de mudança no <select> 
+        document
+          .getElementById("selectFilme")
+          .addEventListener("change", function () {
             atualizarKPIs(this.value);
-        });
-    });
-</script>
+          })
+      }
+    </script>
+</html>
