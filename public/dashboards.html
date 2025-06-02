@@ -22,6 +22,7 @@
     
     <section class="banner">
         <img class="imgBanner" src="./assets/imgs/Banner Dashboard.webp" alt="">
+        <h2>Olá, <span id="b_usuario">usuário</span>!</h2>
         <h2>Média geral dos filmes</h2>
         <p>Veja como os filmes de Tarantino estão sendo avaliados pelos usuários!</p>
     </section>
@@ -73,6 +74,9 @@
     let avaliacoesData = [];
 
     function desenharGraficos() {
+
+        b_usuario.innerHTML = sessionStorage.NOME_USUARIO;  
+
         // Gráfico de barras - Média Geral por Filme
         fetch('/avaliacao/mediaPorFilme')
             .then(res => res.json())
