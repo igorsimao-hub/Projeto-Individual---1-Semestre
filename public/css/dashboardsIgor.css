@@ -1,4 +1,15 @@
 /* Reset básico */
+:root {
+    --fundo-principal: #1a1a1a;
+    --texto-principal: #ffffff;
+    --amarelo-suave: #FFD700;
+    --header-bg: #800000;
+    --box-bg: #3D0000;
+    --section-bg: #333333;
+    --card-bg: #2e2e2e;
+}
+
+
 * {
     margin: 0;
     padding: 0;
@@ -12,15 +23,16 @@ body {
 }
 
 header {
-    background: #800000;
-    padding: 1rem 2rem;
+    background: var(--box-bg);
+    padding: 1rem 15rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 header h1 {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
+    color: var(--texto-principal);
 }
 
 nav ul {
@@ -30,9 +42,14 @@ nav ul {
 }
 
 nav a {
-    color: #fff;
+    color: var(--texto-principal);
     text-decoration: none;
     font-weight: bold;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: var(--amarelo-suave);
 }
 
 .banner {
@@ -114,11 +131,15 @@ nav a {
 }
 
 footer {
-    text-align: center;
-    padding: 1rem;
-    background: #111;
-    font-size: 0.8rem;
-    margin-top: 2rem;
+  background-color: var(--section-bg);
+  text-align: center;
+  padding: 1.5rem 0;
+}
+
+footer .version {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
 }
 
 #topBtn {

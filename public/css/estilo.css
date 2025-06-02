@@ -1,3 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+
+.luckiest-guy-regular {
+  font-family: "Luckiest Guy", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
 
 :root {
   --fundo-principal: #2C0000;
@@ -16,7 +25,7 @@
 }
 
 body {
-  font-family: 'Cinzel', serif;
+  font-family: 'Arial', sans-serif;
   background-color: var(--fundo-principal);
   color: var(--texto-principal);
   line-height: 1.6;
@@ -181,51 +190,6 @@ section ul {
   margin-bottom: 1rem;
 }
 
-/* Galeria de Filmes */
-.cards {
- width: 100%;
-  max-width: 1400px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 2rem;
-  justify-items: center;
-  margin: 0 auto; 
-}
-
-.card-filme {
-  background-color: var(--card-bg);
-  border-radius: 10px;
-  overflow: hidden;
-  text-decoration: none;
-  color: var(--texto-principal);
-  transition: transform 0.3s, box-shadow 0.3s;
-  display: flex;
-  flex-direction: column;
-  cursor: pointer;
-}
-
-.card-filme img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.card-filme span {
-  padding: 0.8rem;
-  font-weight: bold;
-  text-align: center;
-  background-color: rgba(0,0,0,0.7);
-  flex-grow: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.card-filme:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 16px rgb(103, 31, 31);
-}
-
 .botaoConhecerFilmes{
   padding: 12px 25px;
   font-weight: bold;
@@ -251,69 +215,4 @@ section ul {
   display: block;
   margin-top: 0.5rem;
   font-size: 0.8rem;
-}
-
-/*Pagina caes*/
-.headerFilmes {
-   background-color: rgba(255, 255, 255, 0);
-  padding: 1rem 0;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-}
-
-.bannerCaes {
-  background: url(assets/imgs/fundoCaesAluguel.jpg) no-repeat center/cover;
-  height: 600px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 2rem 0;
-  cursor: pointer;
-}
-
-/* ALERTA */
-
-#alerta {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-}
-
-.mensagem-alarme {
-  background-color: white;
-  border-radius: 5px;
-  width: 300px;
-  height: 80px;
-  margin: 10px;
-  padding: 10px 0;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-}
-
-.mensagem-alarme h3 {
-  font-size: 14px;
-  margin: 0;
-}
-
-.mensagem-alarme .informacao {
-  width: 66%;
-}
-
-.alarme-sino {
-  width: 48px;
-  height: 48px;
-  animation-name: bell;
-  animation-duration: 4s;
-  background-image: url('https://cdn-icons-png.flaticon.com/512/1157/1157000.png');
-  background-size: cover;
-  animation-iteration-count: infinite;
-}
-
-@keyframes bell {
-  0%   {transform: rotate(25deg)}
-  25%  {transform: rotate(-25deg)}
-  50%  {transform: rotate(25deg)}
-  75%  {transform: rotate(-25deg)}
-  100% {transform: rotate(25deg)}
 }

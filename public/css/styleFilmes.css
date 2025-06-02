@@ -106,7 +106,7 @@ body {
 /* Galeria de Filmes */
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(18px, 3fr));
   gap: 0.5rem; /* Menor espaço entre os cards */
   margin-top: 1rem;
 
