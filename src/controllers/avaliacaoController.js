@@ -13,7 +13,7 @@ function cadastrar(req, res) {
     } = req.body;
 
     if (!nota_enredo || !nota_trilha_sonora || !nota_direcao || !nota_fotografia || !fk_usuario || !fk_filme) {
-        return res.status(400).send("Campos obrigatórios faltando!");
+        return res.status(400).send("Campos obrigatórios faltando!")
     }
 
     avaliacaoModel.inserirAvaliacao({
@@ -31,7 +31,7 @@ function cadastrar(req, res) {
     })
     .catch((erro) => {
         console.error(erro);
-        res.status(500).json(erro.sqlMessage || erro.message);
+        res.status(500).json(erro.sqlMessage || erro.message)
     });
 }
 
@@ -39,11 +39,11 @@ function cadastrar(req, res) {
 function obterMediaPorFilme(req, res) {
     avaliacaoModel.mediaPorFilme()
         .then(function (resultado) {
-            res.json(resultado);
+            res.json(resultado)
         })
         .catch(function (erro) {
-            console.error(erro);
-            res.status(500).json(erro.sqlMessage || erro.message);
+            console.error(erro)
+            res.status(500).json(erro.sqlMessage || erro.message)
         })
 }
 

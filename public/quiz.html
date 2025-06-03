@@ -134,10 +134,15 @@
         fk_filme: fk_filme    
       })
     })  
-    .then(res => res.json()) // converte a resposta do servidor para json
-    .then(data => {
-      console.log("Avaliação salva!", data);
-    });
+
+    .then(function (res) {
+    return res.json() // converte a resposta do servidor para json
+    })
+    
+    .then(function (data) {
+    console.log("Avaliação salva!", data);
+});
+
   }
 </script>
 </body>
