@@ -108,7 +108,7 @@
     
    
 
-    const avaliacao = {
+    const avaliacao = { // cria objeto
       enredo: enredo,
       trilha: trilha,
       atuacao: atuacao,
@@ -118,23 +118,22 @@
 
     const media = (avaliacao.enredo + avaliacao.trilha + avaliacao.atuacao + avaliacao.direcao + avaliacao.fotografia) / 5
 
-    frase.innerHTML = 'Avaliação enviada com sucesso! Média:'  + media.toFixed(1);
+    frase.innerHTML = 'Avaliação enviada com sucesso! Média:' + media.toFixed(1);
 
     // Enviar a avaliação para o servidor:
-    fetch('http://localhost:3333/avaliacao/avaliacoes', { //endpoint
-      method: 'POST', // indica q ta enviando dados
-      headers: { 'Content-Type': 'application/json' }, //define o counteduo como jason
-      body: JSON.stringify({
+    fetch('http://localhost:3333/avaliacao/avaliacoes', { //endpoint, fetch é uma requisição do js
+      method: 'POST', // indica q ta enviando dados e naõ apenas lendo
+      headers: { 'Content-Type': 'application/json' }, //define o counteduo como jason, se não tiver o servidor pode esperar outros formatos
+      body: JSON.stringify({ // transforma o objeto javacript em JSON
         nota_enredo: avaliacao.enredo,
         nota_trilha_sonora: avaliacao.trilha,
         nota_atuacao: avaliacao.atuacao,
         nota_direcao: avaliacao.direcao,
         nota_fotografia: avaliacao.fotografia,
-        momento: avaliacao.momento,
         fk_usuario: fk_usuario,
         fk_filme: fk_filme    
       })
-    })
+    })  
     .then(res => res.json()) // converte a resposta do servidor para json
     .then(data => {
       console.log("Avaliação salva!", data);

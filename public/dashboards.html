@@ -69,42 +69,43 @@
     </footer>
 
   </body>
-  
+
   <script>
     // 1. Variáveis globais
-      let filmesData = [];
-      let avaliacoesData = [];
+      let dadosFilmes = []
+      let dadosAvaliacoes = []
 
-      // 2. Função que desenha os gráficos (idêntica à explicada antes)
+      // 2. Função que desenha os gráficos
       function desenharGraficos() {
         nome_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
         // Gráfico de barras - Média Geral por Filme
-        fetch("/avaliacao/mediaPorFilme")
-          .then(function (res) {
+        fetch("/avaliacao/mediaPorFilme") // faz requisição GET ao endpoint do model
+          .then(function (res) { // converte a resposta em uma array JSON
             return res.json();
           })
-          .then(function (dados) {
-            let filmes = [];
-            let medias = [];
+          .then(function (dados) { // cria dois vetores vazios
 
-            for (let i = 0; i < dados.length; i++) {
-              filmes.push(dados[i].nome_filme);
-              medias.push(Number(dados[i].media_geral));
+            let filmes = [] // vetores para usar como variavel no grafico
+            let medias = []
+
+            for (let i = 0; i < dados.length; i++) { // percorre dados, e a cada interação puxa o nome do filme e nota media
+              filmes.push(dados[i].nome_filme)
+              medias.push(Number(dados[i].media_geral))
             }
 
-            const ctx = document
+            const ctx = document 
               .getElementById("graficoMedia")
               .getContext("2d");
 
-            new Chart(ctx, {
+            new Chart(ctx, { // cria grafico de barras
               type: "bar",
               data: {
-                labels: filmes,
+                labels: filmes, // o eixo x vai ser preenchido com o nome dos filmes
                 datasets: [
                   {
                     label: "Média Geral",
-                    data: medias,
+                    data: medias, // coloca as notas medias
                     backgroundColor: "rgba(200, 30, 30, 0.7)",
                     borderColor: "rgba(120, 0, 0, 1)",
                     borderWidth: 2,
@@ -124,38 +125,38 @@
           });
 
         // Gráficos Radar - Médias por Critério
-        fetch("/avaliacao/mediasCriterioPorFilme")
-          .then(function (res) {
+        fetch("/avaliacao/mediasCriterioPorFilme") // solicita JSON com medias por criterio
+          .then(function (res) { // converte a resposta para vetor de objetos
             return res.json();
           })
-          .then(function (data) {
-            const labels = [
+          .then(function (data) { 
+            const labels = [ // DEFINE UMA VARIAVEL QUE VAI SER OS EIXOS DO GRAFICO
               "Enredo",
               "Trilha Sonora",
               "Atuação",
               "Direção",
               "Fotografia",
             ];
-            const radarContainer = document.getElementById("radarCharts");
-            radarContainer.innerHTML = "";
+            const radarContainer = document.getElementById("radarCharts"); // cria variavel da div radarCharts
+            radarContainer.innerHTML = '' // limpa conteudo
 
-            for (let i = 0; i < data.length; i++) {
-              const filme = data[i];
-              const canvas = document.createElement("canvas");
-              canvas.width = 300;
-              canvas.height = 300;
-              radarContainer.appendChild(canvas);
+            for (let i = 0; i < data.length; i++) { // PERCORRE CADA OBJETO
+              const filme = data[i] // ADICIONA CADA FILME NA VARIAVEL FILME
+              const canvas = document.createElement("canvas")// 'CRIA' UM NOVO GRAFICO A CADA FILME
+              canvas.width = 300
+              canvas.height = 300
+              radarContainer.appendChild(canvas) // INSERE O NOVO CANVAS NO RADARCONTAINER
 
               const ctx = canvas.getContext("2d");
 
-              new Chart(ctx, {
+              new Chart(ctx, { // cria grafico radar
                 type: "radar",
                 data: {
-                  labels: labels,
+                  labels: labels, // adiciona os criterios na label
                   datasets: [
                     {
-                      label: filme.nome_filme,
-                      data: [
+                      label: filme.nome_filme, // adiciona o nome do filme
+                      data: [ // adiciona como dado os criterios do filme puxando do servidor
                         filme.media_enredo,
                         filme.media_trilha,
                         filme.media_atuacao,
@@ -183,58 +184,59 @@
                   },
                 },
               });
-            }
+            } // FINAL DO LAÇO
           });
       }
 
       // 3. Função que preenche o <select> de filmes
       function preencherSelectFilmes() {
 
-        const select = document.getElementById("selectFilme");
-        select.innerHTML = "";
+        const select = document.getElementById("selectFilme") // seleciona o select do body
+        select.innerHTML = ''
 
-        for (let i = 0; i < filmesData.length; i++) {
-          const filme = filmesData[i]
-          const option = document.createElement("option")
-          option.value = filme.fk_filme
-          option.textContent = filme.nome_filme
-          select.appendChild(option)
+        for (let i = 0; i < dadosFilmes.length; i++) { // percorre o vetor global
+          const filme = dadosFilmes[i]
+          const option = document.createElement("option") // cria uma opção no select a cada elemento do FOR
+          option.value = filme.fk_filme // adiciona o id do filme como valor
+          option.textContent = filme.nome_filme // adicione o nome do filme na parte visivel da opção
+          select.appendChild(option) // INSERE ESSA OPTION DENTRO DO SELECT
         }
 
-        if (filmesData.length > 0) {
-          atualizarKPIs(select.value);
+        if (dadosFilmes.length > 0) { // CASO JA EXISTA AO MENOS UM FILME, ELE ATUALIZA AS KPIs
+          atualizarKPIs(select.value)
         }
       }
 
       // 4. Função que atualiza os KPIs para um filme específico
       function atualizarKPIs(filmeId) {
 
-        let filme = null;
+        let filme = null; // assinala q nao encontrou o objeto
 
-        for (let i = 0; i < filmesData.length; i++) {
-          if (filmesData[i].fk_filme == filmeId) {
-            filme = filmesData[i];
-            break;
+        for (let i = 0; i < dadosFilmes.length; i++) { // percorre vetor global
+          if (dadosFilmes[i].fk_filme == filmeId) { // se o id do filme na posicao i for igual ao id que recebeu no parametro
+            filme = dadosFilmes[i] // guarda o filme na variavel filme
+            break; // para o laço, pois ja achou o id desejado
           }
         }
 
-        let avaliacoesFilme = [];
-        for (let i = 0; i < avaliacoesData.length; i++) {
-          if (avaliacoesData[i].fk_filme == filmeId) {
-            avaliacoesFilme.push(avaliacoesData[i]);
+        let avaliacoesFilme = []
+
+        for (let i = 0; i < dadosAvaliacoes.length; i++) { // percorre vetor global
+          if (dadosAvaliacoes[i].fk_filme == filmeId) { // se validar o if, significa q a avaliação pertence ao filme com o id recebido
+            avaliacoesFilme.push(dadosAvaliacoes[i]);
           }
         }
 
-        kpiTotalAvaliacoes.innerHTML = avaliacoesFilme.length;
+        kpiTotalAvaliacoes.innerHTML = avaliacoesFilme.length; // adiciona na KPI a qtd de avaliacoes
 
         if (filme) {
-          kpiMediaGeral.innerHTML = Number(filme.media_geral).toFixed(2);
+          kpiMediaGeral.innerHTML = Number(filme.media_geral).toFixed(2); // adiciona na KPI a media do filme
         }
         else {
           kpiMediaGeral.innerHTML = "-";
         }
 
-        kpiFilmesAvaliados.innerHTML = filmesData.length;
+        kpiFilmesAvaliados.innerHTML = dadosFilmes.length 
       }
 
     
@@ -248,13 +250,13 @@
           return res.json();
         })
 
-        // 5.2. Quando receber filmes, armazenar em filmesData
+        // 5.2. Quando receber filmes, armazenar em dadosFilmes
         filmesPromise.then(function (filmes) {
-          filmesData = filmes;
+          dadosFilmes = filmes;
 
           // 5.3. Só então, quando as avaliações chegarem, armazenar e chamar as funções
           avaliacoesPromise.then(function (avaliacoes) {
-            avaliacoesData = avaliacoes;
+            dadosAvaliacoes = avaliacoes;
             preencherSelectFilmes();
             desenharGraficos();
           });

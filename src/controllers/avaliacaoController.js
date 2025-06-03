@@ -35,21 +35,25 @@ function cadastrar(req, res) {
     });
 }
 
-// função para gerar na dash:
+// função para gerar media na dash:
 function obterMediaPorFilme(req, res) {
     avaliacaoModel.mediaPorFilme()
-        .then((resultado) => res.json(resultado))
-        .catch((erro) => {
+        .then(function (resultado) {
+            res.json(resultado);
+        })
+        .catch(function (erro) {
             console.error(erro);
             res.status(500).json(erro.sqlMessage || erro.message);
-        });
+        })
 }
 
-// função para gerar na dash:
+// função para gerar media por criterio na dash:
 function obterMediasCriterioPorFilme(req, res) {
     avaliacaoModel.mediasCriterioPorFilme()
-        .then(resultado => res.json(resultado))
-        .catch(erro => {
+        .then(function (resultado) {
+            res.json(resultado);
+        })
+        .catch(function (erro) {
             console.error("Erro ao buscar médias por filme: ", erro);
             res.status(500).json(erro);
         });
@@ -58,8 +62,12 @@ function obterMediasCriterioPorFilme(req, res) {
 // função para gerar na KPI:
 function listarTodasAvaliacoes(req, res) {
     avaliacaoModel.listarTodasAvaliacoes()
-        .then(resultado => res.json(resultado))
-        .catch(erro => res.status(500).json(erro));
+        .then(function (resultado) {
+            res.json(resultado);
+        })
+        .catch(function (erro) {
+            res.status(500).json(erro);
+        });
 }
 
 
