@@ -27,7 +27,7 @@
 
 <div id="container">
   <div id="avaliacaoFilme" style="display: flex;">
-    <h2 class="dashboard-title">Avalie os filmes do Trantino</h2>
+    <h2 class="dashboard-title">Avalie os filmes do Tarantino</h2>
 
     <div class="criterio">
       <label for="filme">Escolha o filme:</label>
@@ -70,28 +70,8 @@
 
     <div id="frase"></div>
   </div>
-
-  <div class="botao">
-    <a href="./dashboards.html">
-      <button class="botaoBonito">
-        <p>Avaliações</p>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            stroke-width="4"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M14 5l7 7m0 0l-7 7m7-7H3"
-            ></path>
-          </svg>
-      </button>
-    </a>
-  </div>
+ 
+    <button class="botaoEnviarAvalicao" onclick="redirecionarDash()">Avaliações</button>
 </div>
   
 <script>
@@ -118,7 +98,7 @@
 
     const media = (avaliacao.enredo + avaliacao.trilha + avaliacao.atuacao + avaliacao.direcao + avaliacao.fotografia) / 5
 
-    frase.innerHTML = 'Avaliação enviada com sucesso! Média:' + media.toFixed(1);
+    frase.innerHTML = `<h4>Avaliação enviada com sucesso! <br> Média: ${media.toFixed(1)}</h4>`
 
     // Enviar a avaliação para o servidor:
     fetch('http://localhost:3333/avaliacao/avaliacoes', { //endpoint, fetch é uma requisição do js
@@ -138,11 +118,15 @@
     .then(function (res) {
     return res.json() // converte a resposta do servidor para json
     })
-    
+
     .then(function (data) {
     console.log("Avaliação salva!", data);
 });
 
+  }
+
+  function redirecionarDash(){
+    window.location.href = "./dashboards.html" // redireciona para a página de dashboar
   }
 </script>
 </body>

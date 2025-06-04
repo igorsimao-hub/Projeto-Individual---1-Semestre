@@ -77,7 +77,7 @@ function cadastrar(req, res) {
     }
 }
 
-module.exports = {
+module.exports = { // exporta as funções para serem usadas em outros arquivos
     autenticar,
     cadastrar
 }

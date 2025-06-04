@@ -19,7 +19,7 @@ body {
 
 
 h2 {
-    color: var(--amarelo-suave);
+  color: var(--amarelo-suave);
   font-size: 32px;
   margin-bottom: 50px;
   text-align: center;
@@ -30,16 +30,16 @@ h2 {
  width: 100%;
   max-width: 1400px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(20px, 3fr));
+  grid-template-columns: repeat(auto-fit, minmax(20px, 3fr)); /* Ajuste o tamanho mínimo conforme necessário */
   gap: 2rem;
   justify-items: center;
   margin: 0 auto; 
 }
 
-.card-filme {
+.card-filme { 
   background-color: var(--card-bg);
   border-radius: 10px;
-  overflow: hidden;
+  overflow: hidden; /* Garante que o conteúdo não ultrapasse os limites do card */
   text-decoration: none;
   color: var(--texto-principal);
   transition: transform 0.3s, box-shadow 0.3s;
@@ -59,13 +59,13 @@ h2 {
   font-weight: bold;
   text-align: center;
   background-color: rgba(0,0,0,0.7);
-  flex-grow: 1;
+  flex-grow: 1; /* Permite que o span ocupe o espaço restante do card */
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .card-filme:hover {
-  transform: translateY(-5px);
+  transform: translateY(-5px); /* Leva o card para cima ao passar o mouse */
   box-shadow: 0 6px 16px rgb(103, 31, 31);
 }

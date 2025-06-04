@@ -77,7 +77,7 @@
 
       // 2. Função que desenha os gráficos
       function desenharGraficos() {
-        nome_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+        nome_usuario.innerHTML = sessionStorage.NOME_USUARIO
 
         // Gráfico de barras - Média Geral por Filme
         fetch("/avaliacao/mediaPorFilme") // faz requisição GET ao endpoint do model
@@ -136,18 +136,20 @@
               "Atuação",
               "Direção",
               "Fotografia",
-            ];
+            ]
+
             const radarContainer = document.getElementById("radarCharts"); // cria variavel da div radarCharts
             radarContainer.innerHTML = '' // limpa conteudo
 
             for (let i = 0; i < data.length; i++) { // PERCORRE CADA OBJETO
+
               const filme = data[i] // ADICIONA CADA FILME NA VARIAVEL FILME
               const canvas = document.createElement("canvas")// 'CRIA' UM NOVO GRAFICO A CADA FILME
               canvas.width = 300
               canvas.height = 300
               radarContainer.appendChild(canvas) // INSERE O NOVO CANVAS NO RADARCONTAINER
 
-              const ctx = canvas.getContext("2d");
+              const ctx = canvas.getContext("2d")
 
               new Chart(ctx, { // cria grafico radar
                 type: "radar",
@@ -195,22 +197,25 @@
         select.innerHTML = ''
 
         for (let i = 0; i < dadosFilmes.length; i++) { // percorre o vetor global
+
           const filme = dadosFilmes[i]
           const option = document.createElement("option") // cria uma opção no select a cada elemento do FOR
+
           option.value = filme.fk_filme // adiciona o id do filme como valor
           option.textContent = filme.nome_filme // adicione o nome do filme na parte visivel da opção
+
           select.appendChild(option) // INSERE ESSA OPTION DENTRO DO SELECT
         }
 
-        if (dadosFilmes.length > 0) { // CASO JA EXISTA AO MENOS UM FILME, ELE ATUALIZA AS KPIs
-          atualizarKPIs(select.value)
+        if (dadosFilmes.length > 0) { 
+          atualizarKPIs(select.value) // esse vai ser o parametro da proxima função
         }
       }
 
       // 4. Função que atualiza os KPIs para um filme específico
       function atualizarKPIs(filmeId) {
 
-        let filme = null; // assinala q nao encontrou o objeto
+        let filme = null // assinala q nao encontrou o objeto
 
         for (let i = 0; i < dadosFilmes.length; i++) { // percorre vetor global
           if (dadosFilmes[i].fk_filme == filmeId) { // se o id do filme na posicao i for igual ao id que recebeu no parametro
@@ -230,7 +235,7 @@
         kpiTotalAvaliacoes.innerHTML = avaliacoesFilme.length; // adiciona na KPI a qtd de avaliacoes
 
         if (filme) {
-          kpiMediaGeral.innerHTML = Number(filme.media_geral).toFixed(2); // adiciona na KPI a media do filme
+          kpiMediaGeral.innerHTML = Number(filme.media_geral).toFixed(1) // adiciona na KPI a media do filme
         }
         else {
           kpiMediaGeral.innerHTML = "-";
@@ -247,12 +252,12 @@
         })
 
         let avaliacoesPromise = fetch("/avaliacao/todasAvaliacoes").then(function (res) {
-          return res.json();
+          return res.json()
         })
 
         // 5.2. Quando receber filmes, armazenar em dadosFilmes
         filmesPromise.then(function (filmes) {
-          dadosFilmes = filmes;
+          dadosFilmes = filmes
 
           // 5.3. Só então, quando as avaliações chegarem, armazenar e chamar as funções
           avaliacoesPromise.then(function (avaliacoes) {
@@ -262,11 +267,9 @@
           });
         });
 
-        // 5.4. Registrar o listener de mudança no <select> 
-        document
-          .getElementById("selectFilme")
-          .addEventListener("change", function () {
-            atualizarKPIs(this.value);
+        // MUDANÇA DO SELECT 
+        document.getElementById("selectFilme").addEventListener("change", function () { // pega o select pelo id, toda que vez que o usuario mudar o select, chama a função atualizarKPIs
+            atualizarKPIs(this.value) // pega o valor da opção selecionada
           })
       }
     </script>

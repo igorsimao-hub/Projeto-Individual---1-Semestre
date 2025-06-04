@@ -1,6 +1,6 @@
 const avaliacaoModel = require('../models/avaliacaoModel');
 
-function cadastrar(req, res) {
+function cadastrar(req, res) { // REQuisição e RESposta do servidor
     const {
         nota_enredo,
         nota_trilha_sonora,
@@ -10,7 +10,7 @@ function cadastrar(req, res) {
         momento,
         fk_usuario,
         fk_filme
-    } = req.body;
+    } = req.body // desestruturação do req.body para pegar todos os valores
 
     if (!nota_enredo || !nota_trilha_sonora || !nota_direcao || !nota_fotografia || !fk_usuario || !fk_filme) {
         return res.status(400).send("Campos obrigatórios faltando!")
@@ -26,19 +26,20 @@ function cadastrar(req, res) {
         fk_usuario,
         fk_filme
     })
-    .then(() => {
+    
+   .then(function () {
         res.status(200).send("Avaliação cadastrada com sucesso!");
     })
-    .catch((erro) => {
+    .catch(function (erro) {
         console.error(erro);
-        res.status(500).json(erro.sqlMessage || erro.message)
+        res.status(500).json(erro.sqlMessage || erro.message);
     });
 }
 
 // função para gerar media na dash:
 function obterMediaPorFilme(req, res) {
-    avaliacaoModel.mediaPorFilme()
-        .then(function (resultado) {
+    avaliacaoModel.mediaPorFilme() // pega o RES do model
+        .then(function (resultado) { // quando a consulta da certo
             res.json(resultado)
         })
         .catch(function (erro) {
@@ -49,9 +50,9 @@ function obterMediaPorFilme(req, res) {
 
 // função para gerar media por criterio na dash:
 function obterMediasCriterioPorFilme(req, res) {
-    avaliacaoModel.mediasCriterioPorFilme()
-        .then(function (resultado) {
-            res.json(resultado);
+    avaliacaoModel.mediasCriterioPorFilme() // pega a RES do model
+        .then(function (resultado) { // quando a consulta da certo
+            res.json(resultado)
         })
         .catch(function (erro) {
             console.error("Erro ao buscar médias por filme: ", erro);
@@ -61,7 +62,7 @@ function obterMediasCriterioPorFilme(req, res) {
 
 // função para gerar na KPI:
 function listarTodasAvaliacoes(req, res) {
-    avaliacaoModel.listarTodasAvaliacoes()
+    avaliacaoModel.listarTodasAvaliacoes() // Pega a RES do model
         .then(function (resultado) {
             res.json(resultado);
         })
@@ -72,7 +73,7 @@ function listarTodasAvaliacoes(req, res) {
 
 
 
-module.exports = {
+module.exports = { // essa função exporta outras funções para serem. EX: se alguem usar o cadastrar o Expressa vai vai chamar 'avaliacaoController.cadastrar'
     cadastrar,
     obterMediaPorFilme,
     obterMediasCriterioPorFilme,

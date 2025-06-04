@@ -17,6 +17,7 @@
 body {
   font-family: 'Cinzel', serif;
   background-color: var(--fundo-principal);
+  background-image: url(../assets/imgs/fundoAvaliacao.jpg);
   color: var(--texto-principal);
   min-height: 100vh;
 }
@@ -134,5 +135,11 @@ body {
   justify-content: center;
   align-items: center;
   margin: 2rem 0 0 0;
+}
+
+#frase {
+  align-self: center;
+  text-align: center;
+  width: 100%;
 }
 
