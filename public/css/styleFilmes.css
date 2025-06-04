@@ -1,4 +1,16 @@
 /* Geral */
+
+:root {
+  --fundo-principal: #2C0000;
+  --texto-principal: #FAF3E0;
+  --amarelo-suave: #E0B300;
+  --header-bg: #A67C00;
+  --box-bg: #3D0000;
+  --section-bg: #1A1A1A;
+  --card-bg: #2e2e2e;
+}
+
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -7,49 +19,33 @@ body {
 }
 
 /* Header */
+/* Header */
 .header {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  padding: 20px 0;
-  background: transparent;
-  z-index: 1000;
-  background-color: #3D0000;
-;
+  background-color: var(--box-bg);
+  padding: 1rem 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3); /*vermelho, amarelo, azul e opacidade*/
 }
 
-.header .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 40px;
-}
-
-.header .titulo {
-  font-size: 24px;
-  color: white;
+.titulo {
+  font-size: 1.8rem;
+  color: var(--header-texto);
 }
 
 .navbar {
   list-style: none;
   display: flex;
-  gap: 15px;
-  margin: 0;
-  padding: 0;
-}
-
-.navbar li {
-  color: white;
+  gap: 1rem;
 }
 
 .navbar a {
-  color: white;
   text-decoration: none;
+  color: var(--texto-principal);
   font-weight: bold;
+  transition: color 0.3s;
 }
 
 .navbar a:hover {
-  color: #FFD700;
+  color: var(--amarelo-suave);
 }
 
 /* Banner */
